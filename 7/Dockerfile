@@ -1,36 +1,39 @@
 FROM alpine:3.4
 
-ENV PHP_VERSION 7
 
 RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 
-RUN apk --update add \
-        zip \
-        php${PHP_VERSION} \
-        php${PHP_VERSION}-dom \
-        php${PHP_VERSION}-ctype \
-        php${PHP_VERSION}-curl \
-        php${PHP_VERSION}-fpm \
-        php${PHP_VERSION}-gd \
-        php${PHP_VERSION}-intl \
-        php${PHP_VERSION}-json \
-        php${PHP_VERSION}-mbstring \
-        php${PHP_VERSION}-mcrypt \
-        php${PHP_VERSION}-mysqlnd \
-        php${PHP_VERSION}-apcu \
-        php${PHP_VERSION}-opcache \
-        php${PHP_VERSION}-pdo \
-        php${PHP_VERSION}-pdo_mysql \
-        php${PHP_VERSION}-posix \
-        php${PHP_VERSION}-session \
-        php${PHP_VERSION}-xml \
-        php${PHP_VERSION}-iconv \
-        php${PHP_VERSION}-phar \
-        php${PHP_VERSION}-openssl \
+RUN apk add --no-cache \
+    php7 \
+    php7-apcu \
+    php7-bcmath \
+    php7-ctype \
+    php7-curl \
+    php7-exif \
+    php7-iconv \
+    php7-intl \
+    php7-json \
+    php7-libsodium \
+    php7-mbstring \
+    php7-opcache \
+    php7-openssl \
+    php7-pcntl \
+    php7-pdo_mysql \
+    php7-pdo_pgsql \
+    php7-pdo_sqlite \
+    php7-phar \
+    php7-posix \
+    php7-session \
+    php7-xdebug \
+    php7-xml \
+    php7-xsl \
+    php7-zip \
+    php7-zlib \
+    && ln -s /usr/bin/php7 /usr/bin/php \
     && rm -rf /var/cache/apk/*
 
-COPY config/php/php.ini /etc/php${PHP_VERSION}/conf.d/50-setting.ini
-COPY config/php/php-fpm.conf /etc/php${PHP_VERSION}/php-fpm.conf
+COPY config/php/php.ini /etc/php7conf.d/50-setting.ini
+COPY config/php/php-fpm.conf /etc/php7/php-fpm.conf
 
 ENTRYPOINT ["/usr/sbin/php-fpm7", "-R", "--nodaemonize"]
 
