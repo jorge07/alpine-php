@@ -1,5 +1,8 @@
 FROM jorge07/alpine-php:7
 
+ENV USER root
+ENV PASSWORD root
+
 RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 
 RUN apk add --no-cache \
@@ -12,7 +15,7 @@ RUN apk add --no-cache \
         php7-xdebug \
 
     && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config \
-    && echo "root:root" | chpasswd \
+    && echo "${USER}:${PASSWORD}" | chpasswd \
     && ssh-keygen -A \
 
     && rm -rf /var/cache/apk/* \
