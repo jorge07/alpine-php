@@ -5,9 +5,6 @@ ENV PHP_VERSION 7
 RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 
 RUN apk --update add \
-        openssh \
-        supervisor \
-        git \
         zip \
         php${PHP_VERSION} \
         php${PHP_VERSION}-dom \
@@ -30,7 +27,6 @@ RUN apk --update add \
         php${PHP_VERSION}-iconv \
         php${PHP_VERSION}-phar \
         php${PHP_VERSION}-openssl \
-
     && rm -rf /var/cache/apk/*
 
 COPY config/php/php.ini /etc/php${PHP_VERSION}/conf.d/50-setting.ini
