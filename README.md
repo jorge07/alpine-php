@@ -19,4 +19,5 @@
 ###To prod:
 
 *Dockerfile*
+
     FROM jorge07/alpine-php:7
