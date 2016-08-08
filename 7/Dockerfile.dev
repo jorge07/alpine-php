@@ -20,7 +20,7 @@ RUN apk add --no-cache \
 
     && rm -rf /var/cache/apk/* \
 
-    && curl -sS https://getcomposer.org/installer | php7 -- --install-dir=/usr/local/bin --filename=composer \
+    && curl -sS https://getcomposer.org/installer | php7 -- --install-dir=/usr/bin --filename=composer \
 
     && wget https://phar.phpunit.de/phpunit.phar \
     && chmod +x phpunit.phar \
