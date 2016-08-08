@@ -9,6 +9,8 @@ RUN apk --update add \
         supervisor \
         git \
         zip \
+        wget \
+        curl \
         php${PHP_VERSION} \
         php${PHP_VERSION}-dom \
         php${PHP_VERSION}-ctype \
@@ -29,15 +31,27 @@ RUN apk --update add \
         php${PHP_VERSION}-xml \
         php${PHP_VERSION}-iconv \
         php${PHP_VERSION}-phar \
+        php${PHP_VERSION}-xdebug \
         php${PHP_VERSION}-openssl \
 
-    && rm -rf /var/cache/apk/*
+    && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config \
+    && echo "root:root" | chpasswd \
+    && ssh-keygen -A \
 
+    && rm -rf /var/cache/apk/* \
+
+    && curl -sS https://getcomposer.org/installer | php${PHP_VERSION} -- --install-dir=/usr/local/bin --filename=composer \
+
+    && wget https://phar.phpunit.de/phpunit.phar \
+    && chmod +x phpunit.phar \
+    && mv phpunit.phar /usr/bin/phpunit
+
+COPY config/supervisor/supervisor.conf /etc/supervisor/conf.d/supervisord.conf
 COPY config/php/php.ini /etc/php${PHP_VERSION}/conf.d/50-setting.ini
 COPY config/php/php-fpm.conf /etc/php${PHP_VERSION}/php-fpm.conf
 
-ENTRYPOINT ["/usr/sbin/php-fpm7", "-R", "--nodaemonize"]
+ENTRYPOINT ["supervisord", "--nodaemon", "--configuration", "/etc/supervisor/conf.d/supervisord.conf"]
 
-EXPOSE 9000
+EXPOSE 22 9000
 
 WORKDIR /app
