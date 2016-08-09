@@ -13,14 +13,15 @@
 ###Using docker Compose
 
     version: '2'
-    service:
+    services:
       fpm:
           image: jorge07/alpine-php:7-dev
           ports:
-            - 2244:22
-            - 9000:9000
+            - "2244:22"
+            - "9000:9000"
           volumes:
-            - $PWD:/app
+            - "$PWD:/app"
+
 
 ###To prod:
 
