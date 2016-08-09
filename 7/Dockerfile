@@ -33,7 +33,7 @@ RUN apk add --no-cache \
 COPY config/php/php.ini /etc/php7conf.d/50-setting.ini
 COPY config/php/php-fpm.conf /etc/php7/php-fpm.conf
 
-ENTRYPOINT ["/usr/sbin/php-fpm7", "-R", "--nodaemonize"]
+CMD ["/usr/sbin/php-fpm7", "-R", "--nodaemonize"]
 
 EXPOSE 9000
 
