@@ -1,8 +1,10 @@
 FROM alpine:3.4
 
+RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+
 RUN apk update \
     && apk add --no-cache \
-    php \
+    php5 \
     php5-apcu \
     php5-bcmath \
     php5-ctype \
@@ -13,8 +15,7 @@ RUN apk update \
     php5-iconv \
     php5-intl \
     php5-json \
-#    php5-libsodium \
-#    php5-mbstring \
+    php5-libsodium \
     php5-mysqli \
     php5-opcache \
     php5-openssl \
@@ -24,7 +25,6 @@ RUN apk update \
     php5-pdo_sqlite \
     php5-phar \
     php5-posix \
-#    php5-session \
     php5-xml \
     php5-xsl \
     php5-zip \
