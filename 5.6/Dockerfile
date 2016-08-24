@@ -30,6 +30,7 @@ RUN apk update \
     php5-zip \
     php5-zlib \
     php5-fpm \
+    php5-mcrypt	 \
     && rm -rf /var/cache/apk/*
 
 COPY config/php/php.ini /etc/phpconf.d/50-setting.ini

@@ -24,6 +24,7 @@ RUN apk add --no-cache \
     php7-posix \
     php7-session \
     php7-xml \
+    php7-mcrypt \
     php7-xsl \
     php7-zip \
     php7-zlib \
