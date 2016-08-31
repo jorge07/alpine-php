@@ -1,6 +1,8 @@
-FROM alpine:3.4
+FROM alpine:edge
 
-RUN apk add --no-cache \
+RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+
+RUN apk add --update \
     php7 \
     php7-apcu \
     php7-bcmath \
