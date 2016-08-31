@@ -9,6 +9,7 @@ RUN apk add --no-cache \
         openssh \
         supervisor \
         git \
+        apache-ant \
         zip \
         wget \
         curl \
