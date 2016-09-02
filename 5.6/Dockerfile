@@ -36,7 +36,7 @@ RUN apk update \
 COPY config/php/php.ini /etc/phpconf.d/50-setting.ini
 COPY config/php/php-fpm.conf /etc/php/php-fpm.conf
 
-CMD ["/usr/sbin/php-fpm", "-R", "--nodaemonize"]
+CMD ["/usr/bin/php-fpm", "-R", "--nodaemonize"]
 
 EXPOSE 9000
 
