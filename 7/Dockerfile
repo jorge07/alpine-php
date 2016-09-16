@@ -3,6 +3,7 @@ FROM alpine:edge
 RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 
 RUN apk add --update \
+    tini \
     php7 \
     php7-apcu \
     php7-bcmath \
@@ -34,6 +35,8 @@ RUN apk add --update \
 
 COPY config/php/php.ini /etc/php7conf.d/50-setting.ini
 COPY config/php/php-fpm.conf /etc/php7/php-fpm.conf
+
+ENTRYPOINT ["/usr/bin/tini", "--"]
 
 CMD ["/usr/sbin/php-fpm7", "-R", "--nodaemonize"]
 

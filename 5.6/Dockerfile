@@ -4,6 +4,7 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositor
 
 RUN apk update \
     && apk add --no-cache \
+    tini \
     php5 \
     php5-apcu \
     php5-bcmath \
@@ -35,6 +36,8 @@ RUN apk update \
 
 COPY config/php/php.ini /etc/phpconf.d/50-setting.ini
 COPY config/php/php-fpm.conf /etc/php/php-fpm.conf
+
+ENTRYPOINT ["/usr/bin/tini", "--"]
 
 CMD ["/usr/sbin/php-fpm", "-R", "--nodaemonize"]
 
