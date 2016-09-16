@@ -39,7 +39,7 @@ COPY config/php/php-fpm.conf /etc/php/php-fpm.conf
 
 ENTRYPOINT ["/usr/bin/tini", "--"]
 
-CMD ["/usr/sbin/php-fpm", "-R", "--nodaemonize"]
+CMD ["/usr/bin/php-fpm", "-R", "--nodaemonize"]
 
 EXPOSE 9000
 
