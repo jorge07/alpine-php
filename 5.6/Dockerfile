@@ -1,5 +1,7 @@
 FROM alpine:edge
 
+MAINTAINER Jorge Arco <jorge.arcoma@gmail.com>
+
 RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 
 RUN apk update \
