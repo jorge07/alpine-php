@@ -39,7 +39,7 @@ RUN apk update \
 COPY config/php/php.ini /etc/phpconf.d/50-setting.ini
 COPY config/php/php-fpm.conf /etc/php/php-fpm.conf
 
-ENTRYPOINT ["/usr/bin/tini", "--"]
+ENTRYPOINT ["/sbin/tini", "--"]
 
 CMD ["/usr/bin/php-fpm", "-R", "--nodaemonize"]
 
