@@ -3,7 +3,7 @@ FROM jorge07/alpine-php:5.6
 ENV USER root
 ENV PASSWORD root
 
-ENV COMPOSER 1.2.1
+ENV COMPOSER_VERSION 1.2.1
 
 RUN apk add --no-cache \
         openssh \
@@ -21,7 +21,7 @@ RUN apk add --no-cache \
 
     && rm -rf /var/cache/apk/* \
 
-    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer --version=${COMPOSER} \
+    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer --version=${COMPOSER_VERSION} \
 
     && wget https://phar.phpunit.de/phpunit.phar \
     && chmod +x phpunit.phar \
