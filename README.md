@@ -1,14 +1,27 @@
 # Alpine-php
-###To run the dev environment:
 
-*SSH*
+This images contains an alpine linux distro with fpm for producion, and several tools for developement like:
+
+    - Composer
+    - PHPUnit
+    - Ant
+
+Use the ENV variables to change the *USER* and *PASSWORD* for ssh and *COMPOSER_VERSION* to select an specific version. 
+
+### To run the dev environment:
+
+     docker run -it -d -v $PWD:/app -p 2244:22 -p 9000:9000 jorge07/alpine-php:7-dev
+
+Use PHPStorm (or whatever IDE) **remote connexion via SSH Credentials**:
 
      u: root 
      p: root
 
-*Run*
+Binary on: /usr/bin/php
 
-     docker run -it -v $PWD:/app -p 2244:22 -p 9000:9000 jorge07/alpine-php:7-dev
+Xdebug on: /usr/lib/php7/modules/xdebug.so
+ 
+Add your **Path mapping** to your workspace folder to the /app folder inside the container.
  
 ###Using docker Compose
 
