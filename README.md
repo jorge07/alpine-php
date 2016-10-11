@@ -1,29 +1,32 @@
 # Alpine-php
 
-This images contains an alpine linux distro with fpm for producion, and several tools for developement like:
+|   Tag   | Parent |        Content               |
+|---------|--------|------------------------------|
+| 7       | alpine | tini, php7-cli & fpm         |
+| 7-dev   |   7    |  + SSH server, ant, composer |
+| 7-front | 7-dev  |   + node6 & npm3             |
+| 5.6     | alpine | tini, php5.6-cli & fpm       |
+| 5.6-dev |  5.6   |  + SSH server, ant, composer |
 
-    - Composer
-    - PHPUnit
-    - Ant
 
 Use the ENV variables to change the *USER* and *PASSWORD* for ssh and *COMPOSER_VERSION* to select an specific version. 
 
-### To run the dev environment:
+## To run the dev environment:
 
      docker run -it -d -v $PWD:/app -p 2244:22 -p 9000:9000 jorge07/alpine-php:7-dev
 
-Use PHPStorm (or whatever IDE) **remote connexion via SSH Credentials**:
+Use the **debuger** with PHPStorm (or whatever IDE) via **[remote connexion via SSH Credentials](https://confluence.jetbrains.com/display/PhpStorm/Working+with+Remote+PHP+Interpreters+in+PhpStorm)**:
 
      u: root 
      p: root
 
-Binary on: /usr/bin/php
+ - Binary on: /usr/bin/php
 
-Xdebug on: /usr/lib/php7/modules/xdebug.so
+ - Xdebug on: /usr/lib/php7/modules/xdebug.so
  
-Add your **Path mapping** to your workspace folder to the /app folder inside the container.
+ - Add your **Path mapping** from your workspace folder to the /app folder inside the container.
  
-###Using docker Compose
+## Using docker Compose
 
     version: '2'
     services:
@@ -36,7 +39,7 @@ Add your **Path mapping** to your workspace folder to the /app folder inside the
             - "$PWD:/app"
 
 
-###To prod:
+## For prod:
 
 *Dockerfile*
 
