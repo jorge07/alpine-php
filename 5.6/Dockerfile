@@ -36,7 +36,7 @@ RUN apk update \
     php5-mcrypt	 \
     && rm -rf /var/cache/apk/*
 
-COPY config/php/php.ini /etc/phpconf.d/50-setting.ini
+COPY config/php/php.ini /etc/php/conf.d/50-setting.ini
 COPY config/php/php-fpm.conf /etc/php/php-fpm.conf
 
 ENTRYPOINT ["/sbin/tini", "--"]
