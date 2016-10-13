@@ -30,6 +30,7 @@ RUN apk add --no-cache \
     && mv phpunit.phar /usr/bin/phpunit
 
 COPY config/env/profile /etc/profile
+COPY config/php/php-dev.ini /etc/php7/conf.d/50-setting.ini
 COPY config/supervisor/supervisor.conf /etc/supervisor/conf.d/supervisord.conf
 
 ENTRYPOINT ["supervisord", "--nodaemon", "--configuration", "/etc/supervisor/conf.d/supervisord.conf"]
