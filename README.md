@@ -4,7 +4,7 @@
 |---------|--------|------------------------------|
 | 7       | alpine | tini, php7-cli & fpm         |
 | 7-dev   |   7    |  + SSH server, ant, composer |
-| 7-front | 7-dev  |   + node6 & npm3             |
+| 7-front | 7-dev  |   + node6 & npm3 & yarn      |
 | 5.6     | alpine | tini, php5.6-cli & fpm       |
 | 5.6-dev |  5.6   |  + SSH server, ant, composer |
 
