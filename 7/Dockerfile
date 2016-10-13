@@ -35,6 +35,8 @@ RUN apk add --update \
     && ln -s /usr/bin/php7 /usr/bin/php \
     && rm -rf /var/cache/apk/*
 
+COPY env/profile /etc/profile
+
 COPY config/php/php.ini /etc/php7conf.d/50-setting.ini
 COPY config/php/php-fpm.conf /etc/php7/php-fpm.conf
 
