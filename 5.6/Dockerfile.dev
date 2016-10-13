@@ -27,6 +27,7 @@ RUN apk add --no-cache \
     && chmod +x phpunit.phar \
     && mv phpunit.phar /usr/bin/phpunit
 
+COPY config/env/profile /etc/profile
 COPY config/supervisor/supervisor.conf /etc/supervisor/conf.d/supervisord.conf
 
 ENTRYPOINT ["supervisord", "--nodaemon", "--configuration", "/etc/supervisor/conf.d/supervisord.conf"]

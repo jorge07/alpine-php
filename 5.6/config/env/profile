@@ -1,0 +1,21 @@
+export CHARSET=UTF-8
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export PAGER=less
+export PS1='\h:\w\$ '
+
+umask 022
+
+alias xon='mv /tmp/xdebug.ini /etc/php/conf.d/'
+alias xoff='mv /etc/php/conf.d/xdebug.ini /tmp'
+
+alias profile='XDEBUG_CONFIG="profiler_enable=1 xdebug.profiler_output_name=profiler.out.%p profiler_output_dir=." php'
+
+alias sf='bin/console'
+alias dev='sf --env=dev'
+alias prod='sf --env=prod'
+
+for script in /etc/profile.d/*.sh ; do
+        if [ -r $script ] ; then
+                . $script
+        fi
+done
