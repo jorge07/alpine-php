@@ -1,0 +1,27 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t php7 -f 7/Dockerfile 7/
+  - docker build -t php7-dev -f 7/Dockerfile.dev 7/
+  - docker build -t php7-front -f 7/Dockerfile.front 7/
+
+  - docker build -t php5 -f 5.6/Dockerfile 5.6/
+  - docker build -t php5-dev -f 5.6/Dockerfile.dev 5.6/
+  - docker run -d php7
+  - docker run -d php7-dev
+  - docker run -d php7-front
+  - docker run -d php5
+  - docker run -d php5-dev
+
+script:
+  docker exec php7 php -v
+  docker exec php7-dev composer --version
+  docker exec php7-front composer --version
+  docker exec php7-front node -v
+  docker exec php7-front yarn --version
+
+  docker exec php5-php -v
+  docker exec php5-dev composer --version
