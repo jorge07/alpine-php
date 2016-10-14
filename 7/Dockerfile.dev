@@ -1,9 +1,9 @@
 FROM jorge07/alpine-php:7
 
-ENV USER root
-ENV PASSWORD root
+ARG USER=root
+ARG PASSWORD=root
 
-ENV COMPOSER_VERSION 1.2.1
+ARG COMPOSER_VERSION=1.2.1
 
 RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 
