@@ -28,6 +28,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin -
 
 COPY config/env/profile /etc/profile
 COPY config/php/php-dev.ini /etc/php/conf.d/50-setting.ini
+COPY config/php/xdebug.ini /etc/php7/conf.d/xdebug.ini
 COPY config/supervisor/supervisor.conf /etc/supervisor/conf.d/supervisord.conf
 
 ENTRYPOINT ["supervisord", "--nodaemon", "--configuration", "/etc/supervisor/conf.d/supervisord.conf"]
