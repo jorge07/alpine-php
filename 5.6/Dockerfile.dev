@@ -18,13 +18,17 @@ RUN apk add --no-cache \
     && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config \
     && echo "${USER}:${PASSWORD}" | chpasswd \
     && ssh-keygen -A \
-    && rm -rf /var/cache/apk/*
+    && rm -rf /var/cache/apk/* \
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer --version=${COMPOSER_VERSION} \
+    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=${COMPOSER_VERSION} \
 
     && wget https://phar.phpunit.de/phpunit.phar \
     && chmod +x phpunit.phar \
-    && mv phpunit.phar /usr/bin/phpunit
+    && mv phpunit.phar /usr/bin/phpunit \
+
+    && wget https://git.io/psysh \
+    && chmod +x psysh \
+    && mv psysh /usr/bin/psysh
 
 COPY config/env/profile /etc/profile
 COPY config/php/php-dev.ini /etc/php/conf.d/50-setting.ini
