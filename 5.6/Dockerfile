@@ -32,6 +32,7 @@ RUN apk update \
     php5-xsl \
     php5-zip \
     php5-zlib \
+    php5-redis \
     php5-fpm \
     php5-mcrypt	 \
     && rm -rf /var/cache/apk/*
