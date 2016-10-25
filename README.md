@@ -26,7 +26,13 @@ Use the **debuger** with PHPStorm (or whatever IDE) via **[remote connexion via 
  
  - Add your **Path mapping** from your workspace folder to the /app folder inside the container.
  
-If you want [debug php script commands](https://confluence.jetbrains.com/display/PhpStorm/Debugging+PHP+CLI+scripts+with+PhpStorm) (for example: php bin/console something) with PHPStorm, you should set the PHP_IDE_CONFIG environment variable with **serverName=SomeName**, where **SomeName** is the name of the server configured in *Settings / Preferences | Languages & Frameworks | PHP | Servers*.
+
+## Xdebug
+
+If you want to [debug php script commands](https://confluence.jetbrains.com/display/PhpStorm/Debugging+PHP+CLI+scripts+with+PhpStorm) (I.E: php bin/console something) with Your IDE (PHPStorm in this case):
+ 
+ - Set the PHP_IDE_CONFIG environment variable with **serverName=SomeName**
+ - where **SomeName** is the name of the server configured in *Settings / Preferences | Languages & Frameworks | PHP | Servers* in the PHPStorm IDE.
  
 ## Using docker Compose
 

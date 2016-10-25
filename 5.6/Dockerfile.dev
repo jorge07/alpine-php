@@ -35,9 +35,6 @@ COPY config/php/php-dev.ini /etc/php/conf.d/50-setting.ini
 COPY config/php/xdebug.ini /etc/php/conf.d/xdebug.ini
 COPY config/supervisor/supervisor.conf /etc/supervisor/conf.d/supervisord.conf
 
-RUN HOST_IP="$(/sbin/ip route|awk '/default/ { print $3 }')" \
-    && sed -i "$ a\xdebug.remote_host=${HOST_IP}" /etc/php7/conf.d/xdebug.ini
-
 ENTRYPOINT ["supervisord", "--nodaemon", "--configuration", "/etc/supervisor/conf.d/supervisord.conf"]
 
 EXPOSE 22 9000
