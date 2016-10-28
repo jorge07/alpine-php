@@ -1,4 +1,4 @@
-# Alpine-php for Symfony oriented
+# Alpine-php Symfony oriented
 
 |   Tag      | Parent |
 |------------|--------|
