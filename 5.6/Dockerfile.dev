@@ -21,6 +21,7 @@ RUN apk add --no-cache \
     && rm -rf /var/cache/apk/* \
 
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=${COMPOSER_VERSION} \
+    && composer global require "hirak/prestissimo:^0.3" \
 
     && wget https://phar.phpunit.de/phpunit.phar \
     && chmod +x phpunit.phar \

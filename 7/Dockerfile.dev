@@ -23,6 +23,7 @@ RUN apk add --no-cache \
     && ssh-keygen -A \
 
     && curl -sS https://getcomposer.org/installer | php7 -- --install-dir=/usr/bin --filename=composer --version=${COMPOSER_VERSION} \
+    && composer global require "hirak/prestissimo:^0.3" \
 
     && wget https://phar.phpunit.de/phpunit.phar \
     && chmod +x phpunit.phar \
