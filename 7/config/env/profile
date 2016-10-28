@@ -10,10 +10,6 @@ alias xoff='mv /etc/php7/conf.d/xdebug.ini /tmp'
 
 alias profile='XDEBUG_CONFIG="profiler_enable=1 xdebug.profiler_output_name=profiler.out.%p profiler_output_dir=." php'
 
-alias sf='bin/console'
-alias dev='sf --env=dev'
-alias prod='sf --env=prod'
-
 for script in /etc/profile.d/*.sh ; do
         if [ -r $script ] ; then
                 . $script
