@@ -1,18 +1,11 @@
-# Alpine-php Symfony oriented
+# Alpine-php WordPress oriented
 
 |   Tag      | Parent |
 |------------|--------|
-| 7-dev-sf   | 7      |
-| 7-front-sf | 7-dev  |
-| 5.6-dev-sf | 5.6    |
+| 7-dev-wp   | 7      |
+| 5.6-dev-wp | 5.6    |
 
-### Aliases
+### wp-cli
 
-| Alias  | Action           |
-|--------|------------------|
-|  sf    |  php bin/console |
-|  dev   |  sf --env=dev    |
-|  prod  |  sf --env=dev    |
-|  sf2   |  php app/console |
-|  2dev  |  sf2 --env=dev   |
-|  2prod |  sf2 --env=dev   |
+**wp-cli** is a command line interface for WordPress. [Here](https://wp-cli.org/commands/) you can find the complete list of wp-cli commands. Also it comes with a tab completion script for your help.
+
