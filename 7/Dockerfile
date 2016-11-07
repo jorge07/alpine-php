@@ -16,6 +16,7 @@ RUN apk add --update \
     php7-intl \
     php7-json \
     php7-libsodium \
+    php7-mysqli \
     php7-mbstring \
     php7-opcache \
     php7-openssl \
