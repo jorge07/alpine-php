@@ -1,41 +1,11 @@
-FROM jorge07/alpine-php:5.6
+FROM jorge07/alpine-php:5.6-dev
 
-ARG USER=root
-ARG PASSWORD=root
+COPY config/env/wordpress /tmp/profile
 
-ARG COMPOSER_VERSION=1.2.1
+RUN cat /tmp/profile >> /etc/profile && rm -rf /tmp/profile \
+    && curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+    && chmod +x wp-cli.phar \
+    && mv wp-cli.phar /usr/bin/wp \
 
-RUN apk add --no-cache \
-        openssh \
-        supervisor \
-        git \
-        apache-ant \
-        zip \
-        wget \
-        curl \
-        php5-xdebug \
-
-    && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config \
-    && echo "${USER}:${PASSWORD}" | chpasswd \
-    && ssh-keygen -A \
-    && rm -rf /var/cache/apk/* \
-
-    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=${COMPOSER_VERSION} \
-    && composer global require "hirak/prestissimo:^0.3" \
-
-    && wget https://phar.phpunit.de/phpunit.phar \
-    && chmod +x phpunit.phar \
-    && mv phpunit.phar /usr/bin/phpunit \
-
-    && wget https://git.io/psysh \
-    && chmod +x psysh \
-    && mv psysh /usr/bin/psysh
-
-COPY config/env/profile /etc/profile
-COPY config/php/php-dev.ini /etc/php/conf.d/50-setting.ini
-COPY config/php/xdebug.ini /etc/php/conf.d/xdebug.ini
-COPY config/supervisor/supervisor.conf /etc/supervisor/conf.d/supervisord.conf
-
-ENTRYPOINT ["supervisord", "--nodaemon", "--configuration", "/etc/supervisor/conf.d/supervisord.conf"]
-
-EXPOSE 22 9000
+    && curl -O https://raw.githubusercontent.com/wp-cli/wp-cli/master/utils/wp-completion.bash \
+    && mv wp-completion.bash ~/wp-completion.bash
