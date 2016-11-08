@@ -1,9 +1,9 @@
 # Alpine-php WordPress oriented
 
-|   Tag      | Parent |
-|------------|--------|
-| 7-dev-wp   | 7      |
-| 5.6-dev-wp | 5.6    |
+|   Tag      | Parent  |
+|------------|---------|
+| 7-dev-wp   | 7-dev   |
+| 5.6-dev-wp | 5.6-dev |
 
 ### wp-cli
 
