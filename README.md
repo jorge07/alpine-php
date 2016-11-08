@@ -10,8 +10,8 @@
 | 7-dev-sf   | 7-dev      | + [Symfony aliases](https://github.com/jorge07/alpine-php/blob/symfony/README.md) |
 | 7-front-sf | 7-dev-sf   | + [Symfony aliases](https://github.com/jorge07/alpine-php/blob/symfony/README.md) |
 | 5.6-dev-sf | 5.6-dev    | + [Symfony aliases](https://github.com/jorge07/alpine-php/blob/symfony/README.md) |
-| 7-dev-wp   | 7-dev-wp   | + wp-cli                                                                          |
-| 5.6-dev-wp | 5.6-dev-wp | + wp-cli                                                                          |
+| 7-dev-wp   | 7-dev      | + wp-cli                                                                          |
+| 5.6-dev-wp | 5.6-dev    | + wp-cli                                                                          |
 
 Use the ENV variables to change the *USER* and *PASSWORD* for ssh and *COMPOSER_VERSION* to select an specific version. 
 
