@@ -13,7 +13,7 @@
 | 7-dev-wp   | 7-dev      | + wp-cli                                                                          |
 | 5.6-dev-wp | 5.6-dev    | + wp-cli                                                                          |
 
-Use the ENV variables to change the *USER* and *PASSWORD* for ssh and *COMPOSER_VERSION* to select an specific version. 
+Use the ARG variables to change the *USER* and *PASSWORD* for ssh and *COMPOSER_VERSION* to select an specific version on the build. 
 
 ## To run the dev environment:
 
