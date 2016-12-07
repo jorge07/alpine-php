@@ -16,3 +16,6 @@
 |  sf2   |  php app/console |
 |  2dev  |  sf2 --env=dev   |
 |  2prod |  sf2 --env=dev   |
+
+
+*Remember* force login when you access to `shell` or `bash` using `-l` or `--login`.
