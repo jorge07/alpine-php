@@ -38,6 +38,8 @@ RUN apk update \
     && rm -rf /var/cache/apk/*
 
 COPY config/php/php.ini /etc/php/conf.d/50-setting.ini
+COPY config/php/opcache.ini /etc/php/cli/conf.d/opcache.ini
+COPY config/php/opcache.ini /etc/php/fpm/conf.d/opcache.ini
 COPY config/php/php-fpm.conf /etc/php/php-fpm.conf
 
 ENTRYPOINT ["/sbin/tini", "--"]
