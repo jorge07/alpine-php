@@ -13,27 +13,38 @@
 | 7-dev-wp   | 7-dev      | + wp-cli                                                                          |
 | 5.6-dev-wp | 5.6-dev    | + wp-cli                                                                          |
 
-Use the ARG variables to change the *USER* and *PASSWORD* for ssh and *COMPOSER_VERSION* to select an specific version on the build. 
 
-## To run the dev environment:
+> Use the ARG variables to change the *USER* and *PASSWORD* for ssh and *COMPOSER_VERSION* to select an specific version on the build. 
+
+## Dev environment:
+
+Run:
 
      docker run -it -d -v $PWD:/app -p 2244:22 -p 9000:9000 jorge07/alpine-php:7-dev
 
 Use the **debuger** with PHPStorm (or whatever IDE) via **[remote connexion via SSH Credentials](https://confluence.jetbrains.com/display/PhpStorm/Working+with+Remote+PHP+Interpreters+in+PhpStorm)**:
 
+#### Credentials
      user: root 
      pass: root
 
- - Binary on: /usr/bin/php
+#### Binary path
 
- - Xdebug on: /usr/lib/php7/modules/xdebug.so
- 
- - Add your **Path mapping** from your workspace folder to the /app folder inside the container.
+     Binary on: /usr/bin/php
+
+#### Xdebug.so path
+
+     /usr/lib/php{7}/modules/xdebug.so
+
+#### Server mappings
+
+Add your **Path mapping** from your workspace folder to the `/app` folder inside the container.
  
 
 ## Xdebug
 
 If you want to [debug php script commands](https://confluence.jetbrains.com/display/PhpStorm/Debugging+PHP+CLI+scripts+with+PhpStorm) (I.E: php bin/console something) with Your IDE (PHPStorm in this case):
+ 
  
  - Set the PHP_IDE_CONFIG environment variable with **serverName=SomeName**
  - where **SomeName** is the name of the server configured in *Settings / Preferences | Languages & Frameworks | PHP | Servers* in the PHPStorm IDE.
