@@ -15,9 +15,6 @@
 | 5.6-wp     | 5.6        |                                                                                   |
 | 5.6-dev-wp | 5.6-dev    | + wp-cli                                                                          |
 
-
-> Use the ARG variables to change the *USER* and *PASSWORD* for ssh and *COMPOSER_VERSION* to select an specific version on the build. 
-
 ## Dev environment:
 
 Run:
@@ -27,21 +24,25 @@ Run:
 Use the **debuger** with PHPStorm (or whatever IDE) via **[remote connexion via SSH Credentials](https://confluence.jetbrains.com/display/PhpStorm/Working+with+Remote+PHP+Interpreters+in+PhpStorm)**:
 
 #### Credentials
-     user: root 
-     pass: root
+
+> Use the ARG variables to change the *USER* and *PASSWORD* for ssh and *COMPOSER_VERSION* to select an specific version on the build. 
+
+##### Default Values:
+
+- user: root 
+- pass: root
 
 #### Binary path
 
-     Binary on: /usr/bin/php
+- /usr/bin/php
 
 #### Xdebug.so path
 
-     /usr/lib/php{7}/modules/xdebug.so
+- /usr/lib/php{7}/modules/xdebug.so
 
 #### Server mappings
 
 Add your **Path mapping** from your workspace folder to the `/app` folder inside the container.
- 
 
 ## Xdebug
 
