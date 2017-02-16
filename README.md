@@ -4,7 +4,7 @@ Minimal PHP containers based on alpine. Contains Tags for development environmen
 
 ## 7 and 5.6 Schemas
 
-![Tree](https://github.com/jorge07/alpine-php/blob/master/doc/Untitled%20Diagram.png)
+![Tree](https://raw.githubusercontent.com/jorge07/alpine-php/master/doc/Untitled%20Diagram.png)
 
 ## Content table
 
