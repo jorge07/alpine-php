@@ -54,7 +54,7 @@ Project structure:
 
      COPY ddd.conf /etc/nginx/conf.d/default.conf
 
-**/etc/infrastructure/dev/docker-compose.yml*
+*/etc/infrastructure/dev/docker-compose.yml*
 
      version: '2'
      services:
