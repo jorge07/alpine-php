@@ -24,7 +24,7 @@ Use the **debuger** with PHPStorm (or whatever IDE) via **[remote connexion via 
 
 Now your breakpoints should work.
 
-#### Steps in detail
+### Steps in detail
 
 **Credentials**
 
