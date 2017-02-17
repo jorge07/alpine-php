@@ -1,6 +1,10 @@
 # IDE integration
 
-Use the **debuger** with PHPStorm (or whatever IDE) via **[remote connexion via SSH Credentials](https://confluence.jetbrains.com/display/PhpStorm/Working+with+Remote+PHP+Interpreters+in+PhpStorm)**:
+### Up container
+
+Example from your root project: 
+    
+    docker run -itd --name php7 -v $PWD:/app -p 2244:22 -p 9000:9000 jorge07/alpine-php:7-dev
 
 ### PHPSTORM
 
@@ -9,7 +13,7 @@ Use the **debuger** with PHPStorm (or whatever IDE) via **[remote connexion via 
         - HOST
             - Docker-machine: 192.168.99.100 ([Recommended](https://github.com/adlogix/docker-machine-nfs))
             - Linux or Docker4{MAc|Windows}: localhost
-        - port: 2244
+        - port: 2244 (or the one you choose on the docker run command)
         - user: root
         - pass: root 
         - Executable: /usr/bin/php
@@ -23,6 +27,8 @@ Use the **debuger** with PHPStorm (or whatever IDE) via **[remote connexion via 
 ![Remote](https://raw.githubusercontent.com/jorge07/alpine-php/master/doc/images/mapping.png)
 
 Now your breakpoints should work.
+
+You can also use the oficial PHPStrom documentation for [remote connexion via SSH Credentials](https://confluence.jetbrains.com/display/PhpStorm/Working+with+Remote+PHP+Interpreters+in+PhpStorm) they will explain it better than me.
 
 ### Steps in detail
 
