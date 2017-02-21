@@ -3,9 +3,7 @@ FROM jorge07/alpine-php:7
 ARG USER=root
 ARG PASSWORD=root
 
-ARG COMPOSER_VERSION=1.2.1
-
-RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+ARG COMPOSER_VERSION=1.3.2
 
 RUN apk add --no-cache \
         openssh \
@@ -23,25 +21,17 @@ RUN apk add --no-cache \
     && ssh-keygen -A \
 
     && curl -sS https://getcomposer.org/installer | php7 -- --install-dir=/usr/bin --filename=composer --version=${COMPOSER_VERSION} \
-    && composer global require "hirak/prestissimo:^0.3" \
-
-    && wget https://phar.phpunit.de/phpunit.phar \
-    && chmod +x phpunit.phar \
-    && mv phpunit.phar /usr/bin/phpunit \
+    && composer global require "hirak/prestissimo:0.3.5" \
 
     && wget https://git.io/psysh \
     && chmod +x psysh \
     && mv psysh /usr/bin/psysh
 
-COPY config/env/profile /etc/profile
-COPY config/php/php-dev.ini /etc/php7/conf.d/50-setting.ini
-COPY config/php/xdebug.ini /etc/php7/conf.d/xdebug.ini
-COPY config/supervisor/supervisor.conf /etc/supervisor/conf.d/supervisord.conf
+ADD devfs /
 
 RUN HOST_IP="$(/sbin/ip route|awk '/default/ { print $3 }')" \
     && sed -i "$ a\xdebug.remote_host=${HOST_IP}" /etc/php7/conf.d/xdebug.ini
 
-ENTRYPOINT ["supervisord", "--nodaemon", "--configuration", "/etc/supervisor/conf.d/supervisord.conf"]
-
+CMD ["supervisord", "--nodaemon", "--configuration", "/etc/supervisor/conf.d/supervisord.conf"]
 
 EXPOSE 22 9000
