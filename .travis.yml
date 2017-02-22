@@ -21,22 +21,22 @@ before_install:
 script:
   - docker exec php7 ls -lha
   - docker exec php7 php -v
-  - docker exec php7 php test/test.php | grep iyo
+  - docker exec php7 php sh -c "php test/test.php | grep iyo"
   - docker exec php7 php sh -c "echo \"<?php echo ini_get('memory_limit');\" | php | grep 256M"
 
-  - docker exec php7-dev php -v | grep Xdebug
+  - docker exec php7-dev sh -c "php -v | grep Xdebug"
   - docker exec php7-dev composer --version
-  - docker exec php7-dev php test/test.php | grep iyo
+  - docker exec php7-dev sh -c "php test/test.php | grep iyo"
   - docker exec php7-dev sh -c "echo \"<?php echo ini_get('memory_limit');\" | php | grep 1G"
 
   - docker exec php7-front node -v
   - docker exec php7-front yarn --version
 
   - docker exec php5 php -v
-  - docker exec php5 php test/test.php | grep iyo
-  - docker exec php5 php sh -c "echo \"<?php echo ini_get('memory_limit');\" | php | grep 256M"
+  - docker exec php5 sh -c "php test/test.php | grep iyo"
+  - docker exec php5 sh -c "echo \"<?php echo ini_get('memory_limit');\" | php | grep 256M"
 
   - docker exec php5-dev php -v | grep Xdebug
   - docker exec php5-dev composer --version
-  - docker exec php5-dev php test/test.php | grep iyo
+  - docker exec php5-dev sh -c "php test/test.php | grep iyo"
   - docker exec php5-dev sh -c "echo \"<?php echo ini_get('memory_limit');\" | php | grep 1G"
