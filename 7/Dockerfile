@@ -1,10 +1,9 @@
-FROM alpine:edge
+FROM alpine:3.5
 
 MAINTAINER Jorge Arco <jorge.arcoma@gmail.com>
 
-RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
-
-RUN apk add --update \
+RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+    && apk add --update \
     tini \
     php7 \
     php7-apcu \
@@ -37,9 +36,7 @@ RUN apk add --update \
     && ln -s /usr/bin/php7 /usr/bin/php \
     && rm -rf /var/cache/apk/*
 
-COPY config/php/php.ini /etc/php7/conf.d/50-setting.ini
-COPY config/php/opcache.ini /etc/php7/conf.d/00_opcache.ini
-COPY config/php/php-fpm.conf /etc/php7/php-fpm.conf
+ADD rootfs /
 
 ENTRYPOINT ["/sbin/tini", "--"]
 

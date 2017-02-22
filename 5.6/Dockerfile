@@ -1,10 +1,9 @@
-FROM alpine:edge
+FROM alpine:3.5
 
 MAINTAINER Jorge Arco <jorge.arcoma@gmail.com>
 
-RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
-
-RUN apk update \
+RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+    && apk update \
     && apk add --no-cache \
     tini \
     php5 \
@@ -34,13 +33,10 @@ RUN apk update \
     php5-zlib \
     php5-redis \
     php5-fpm \
-    php5-mcrypt	 \
+    php5-mcrypt \
     && rm -rf /var/cache/apk/*
 
-COPY config/php/php.ini /etc/php/conf.d/50-setting.ini
-COPY config/php/opcache.ini /etc/php/cli/conf.d/opcache.ini
-COPY config/php/opcache.ini /etc/php/fpm/conf.d/opcache.ini
-COPY config/php/php-fpm.conf /etc/php/php-fpm.conf
+ADD rootfs /
 
 ENTRYPOINT ["/sbin/tini", "--"]
 
