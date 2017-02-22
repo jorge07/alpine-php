@@ -1,5 +1,7 @@
 # Alpine-php
 
+[![Build Status](https://travis-ci.org/jorge07/alpine-php.svg?branch=master)](https://travis-ci.org/jorge07/alpine-php)
+
 Minimal PHP containers based on alpine. Contains Tags for development environments and adapted for various frameworks like [Symfony](http://symfony.com/) and [Wordpress](https://github.com/WordPress/WordPress).
 
 ## Quick start Dev environment:
