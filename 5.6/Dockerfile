@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.5
 
 MAINTAINER Jorge Arco <jorge.arcoma@gmail.com>
 
@@ -33,7 +33,7 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositor
     php5-zlib \
     php5-redis \
     php5-fpm \
-    php5-mcrypt	 \
+    php5-mcrypt \
     && rm -rf /var/cache/apk/*
 
 ADD rootfs /
