@@ -19,7 +19,7 @@ before_install:
   - docker run --name php5-dev -d -v $PWD:/app jorge07/alpine-php:5.6-dev
 
 script:
-  - ls -lha
+  - docker exec php7 ls -lha
   - docker exec php7 php -v
   - docker exec php7 php test/test.php | grep iyo
   - docker exec php7 php sh -c "echo \"<?php echo ini_get('memory_limit');\" | php | grep 256M"
