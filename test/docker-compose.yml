@@ -9,7 +9,7 @@ services:
         - fpm
 
   fpm:
-    image: jorge07/alpine-php:7-dev-sf
+    image: jorge07/alpine-php:7
     expose:
       - 9000
     volumes:
