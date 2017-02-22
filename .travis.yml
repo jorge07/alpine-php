@@ -3,7 +3,15 @@ sudo: required
 services:
   - docker
 
+env:
+  DOCKER_COMPOSE_VERSION: 1.9.2
+
 before_install:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+
   - docker build -t jorge07/alpine-php:7 -f 7/Dockerfile 7/
   - docker build -t jorge07/alpine-php:7-dev -f 7/Dockerfile.dev 7/
   - docker build -t jorge07/alpine-php:7-front -f 7/Dockerfile.front 7/
@@ -17,6 +25,7 @@ before_install:
 
   - docker run --name php5 -d -v $PWD:/app jorge07/alpine-php:5.6
   - docker run --name php5-dev -d -v $PWD:/app jorge07/alpine-php:5.6-dev
+  - docker-compose -f test/docker-compose.yml up -d
 
 script:
   - docker exec php7 ls -lha
@@ -42,3 +51,5 @@ script:
   - docker exec php5-dev composer --version
   - docker exec php5-dev sh -c "php test/test.php | grep Iyo"
   - docker exec php5-dev sh -c "echo \"<?php echo ini_get('memory_limit');\" | php | grep 1G"
+
+  - docker exec test_fpm_1 sh -c "curl nginx | grep Iyo"
