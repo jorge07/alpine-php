@@ -4,18 +4,19 @@ services:
   - docker
 
 before_install:
-  - docker build -t php7 -f 7/Dockerfile 7/
-  - docker build -t php7-dev -f 7/Dockerfile.dev 7/
-  - docker build -t php7-front -f 7/Dockerfile.front 7/
+  - docker build -t jorge07/alpine-php:7 -f 7/Dockerfile 7/
+  - docker build -t jorge07/alpine-php:7-dev -f 7/Dockerfile.dev 7/
+  - docker build -t jorge07/alpine-php:7-front -f 7/Dockerfile.front 7/
 
-  - docker build -t php5 -f 5.6/Dockerfile 5.6/
-  - docker build -t php5-dev -f 5.6/Dockerfile.dev 5.6/
+  - docker build -t jorge07/alpine-php:5.6 -f 5.6/Dockerfile 5.6/
+  - docker build -t jorge07/alpine-php:5.6-dev -f 5.6/Dockerfile.dev 5.6/
 
-  - docker run -d -v $PWD:/app php7
-  - docker run -d -v $PWD:/app php7-dev
-  - docker run -d -v $PWD:/app php7-front
-  - docker run -d -v $PWD:/app php5
-  - docker run -d -v $PWD:/app php5-dev
+  - docker run --name php7 -d -v $PWD:/app jorge07/alpine-php:7
+  - docker run --name php7-dev-d -v $PWD:/app jorge07/alpine-php:7-dev
+  - docker run --name php7-front -d -v $PWD:/app jorge07/alpine-php:7-front
+
+  - docker run --name php5 -d -v $PWD:/app jorge07/alpine-php:5.6
+  - docker run --name php5 -dev-d -v $PWD:/app jorge07/alpine-php:5.6-dev
 
 script:
   docker exec php7 php -v
