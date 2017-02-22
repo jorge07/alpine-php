@@ -12,11 +12,11 @@ before_install:
   - docker build -t jorge07/alpine-php:5.6-dev -f 5.6/Dockerfile.dev 5.6/
 
   - docker run --name php7 -d -v $PWD:/app jorge07/alpine-php:7
-  - docker run --name php7-dev-d -v $PWD:/app jorge07/alpine-php:7-dev
+  - docker run --name php7-dev -d -v $PWD:/app jorge07/alpine-php:7-dev
   - docker run --name php7-front -d -v $PWD:/app jorge07/alpine-php:7-front
 
   - docker run --name php5 -d -v $PWD:/app jorge07/alpine-php:5.6
-  - docker run --name php5 -dev-d -v $PWD:/app jorge07/alpine-php:5.6-dev
+  - docker run --name php5-dev -d -v $PWD:/app jorge07/alpine-php:5.6-dev
 
 script:
   - docker exec php7 php -v
