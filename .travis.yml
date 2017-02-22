@@ -21,8 +21,8 @@ before_install:
 script:
   - docker exec php7 ls -lha
   - docker exec php7 php -v
-  - docker exec php7 php sh -c "php test/test.php | grep iyo"
-  - docker exec php7 php sh -c "echo \"<?php echo ini_get('memory_limit');\" | php | grep 256M"
+  - docker exec php7 sh -c "php test/test.php | grep iyo"
+  - docker exec php7 sh -c "echo \"<?php echo ini_get('memory_limit');\" | php | grep 256M"
 
   - docker exec php7-dev sh -c "php -v | grep Xdebug"
   - docker exec php7-dev composer --version
