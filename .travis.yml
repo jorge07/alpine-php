@@ -4,13 +4,13 @@ services:
   - docker
 
 env:
-  DOCKER_COMPOSE_VERSION: 1.9.2
+  DOCKER_COMPOSE_VERSION: 1.8.1
 
 before_install:
   - sudo rm /usr/local/bin/docker-compose
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
+  - chmod +x /usr/local/bin/docker-compose
 
   - docker build -t jorge07/alpine-php:7 -f 7/Dockerfile 7/
   - docker build -t jorge07/alpine-php:7-dev -f 7/Dockerfile.dev 7/
@@ -25,6 +25,7 @@ before_install:
 
   - docker run --name php5 -d -v $PWD:/app jorge07/alpine-php:5.6
   - docker run --name php5-dev -d -v $PWD:/app jorge07/alpine-php:5.6-dev
+
   - docker-compose -f test/docker-compose.yml up -d
 
 script:
