@@ -23,7 +23,7 @@ Run example:
 
 ## Content table
 
-|    Tag     | Parent     |        Content                                                                    | Layers
+|    Tag     | Parent     |        Content                                                                    | Size & Layers
 |------------|------------|-----------------------------------------------------------------------------------|---------
 | 7          | alpine     | tini, php7-cli & fpm                                                              | [![](https://images.microbadger.com/badges/image/jorge07/alpine-php:7.svg)](https://microbadger.com/images/jorge07/alpine-php:7 "Get your own image badge on microbadger.com")
 | 7-dev      |   7        |  + SSH server, ant, composer                                                      | [![](https://images.microbadger.com/badges/image/jorge07/alpine-php:7-dev.svg)](https://microbadger.com/images/jorge07/alpine-php:7-dev "Get your own image badge on microbadger.com")
