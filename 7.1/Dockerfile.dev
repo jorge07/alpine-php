@@ -1,4 +1,4 @@
-FROM jorge07/alpine-php:7
+FROM jorge07/alpine-php:7.1
 
 ARG USER=root
 ARG PASSWORD=root
@@ -6,21 +6,34 @@ ARG PASSWORD=root
 ARG COMPOSER_VERSION=1.3.2
 
 RUN apk add --no-cache \
+        php7.1-dev \
+        php7.1-pear \
         openssh \
         supervisor \
+        autoconf \
         git \
         apache-ant \
         zip \
         wget \
+        autoconf \
+        gcc \
+        make \
+        g++ \
         curl \
-        php7-xdebug \
     && rm -rf /var/cache/apk/* \
+
+    && cd /tmp && wget http://xdebug.org/files/xdebug-2.5.0.tgz \
+    && tar -zxvf xdebug-2.5.0.tgz \
+    && cd xdebug-2.5.0 && phpize \
+    && ./configure --enable-xdebug && make && make install \
+    && cd \
+    && rm -rf /tmp/* \
 
     && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config \
     && echo "${USER}:${PASSWORD}" | chpasswd \
     && ssh-keygen -A \
 
-    && curl -sS https://getcomposer.org/installer | php7 -- --install-dir=/usr/bin --filename=composer --version=${COMPOSER_VERSION} \
+    && curl -sS https://getcomposer.org/installer | php7.1 -- --install-dir=/usr/bin --filename=composer --version=${COMPOSER_VERSION} \
     && composer global require "hirak/prestissimo:0.3.5" \
 
     && wget https://git.io/psysh \
@@ -30,7 +43,7 @@ RUN apk add --no-cache \
 ADD devfs /
 
 RUN HOST_IP="$(/sbin/ip route|awk '/default/ { print $3 }')" \
-    && sed -i "$ a\xdebug.remote_host=${HOST_IP}" /etc/php7/conf.d/xdebug.ini
+    && sed -i "$ a\xdebug.remote_host=${HOST_IP}" /etc/php7.1/conf.d/xdebug.ini
 
 CMD ["supervisord", "--nodaemon", "--configuration", "/etc/supervisor/conf.d/supervisord.conf"]
 

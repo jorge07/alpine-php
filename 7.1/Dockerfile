@@ -6,15 +6,13 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositor
     && apk add --update \
     tini \
     php7.1 \
-    php7-apcu \
+
     php7.1-bcmath \
     php7.1-ctype \
     php7.1-curl \
     php7.1-exif \
     php7.1-iconv \
-    php7-intl \
     php7.1-json \
-    php7-libsodium \
     php7.1-mysqli \
     php7.1-mbstring \
     php7.1-opcache \
@@ -31,7 +29,6 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositor
     php7.1-xsl \
     php7.1-zip \
     php7.1-zlib \
-    php7-redis \
     php7.1-fpm \
     && rm -rf /var/cache/apk/*
 
