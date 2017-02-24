@@ -1,0 +1,15 @@
+alias sf='php bin/console'
+alias dev='sf --env=dev'
+alias test='sf --env=test'
+alias prod='sf --env=prod'
+
+alias nuke='dev d:d:d --force && dev d:d:c'
+alias doctrine:cc='dev doctrine:cache:clear-metadata && dev doctrine:cache:clear-query && dev doctrine:cache:clear-result'
+
+alias sf2='php app/console'
+alias 2dev='sf2 --env=dev'
+alias 2test='sf2 --env=test'
+alias 2prod='sf2 --env=prod'
+
+alias 2nuke='2dev d:d:d --force && 2dev d:d:c'
+alias 2doctrine:cc='2dev doctrine:cache:clear-metadata && 2dev doctrine:cache:clear-query && 2dev doctrine:cache:clear-result'
