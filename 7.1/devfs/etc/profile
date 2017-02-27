@@ -5,8 +5,8 @@ export PS1='\h:\w\$ '
 
 umask 022
 
-alias xon='mv /tmp/xdebug.ini /etc/php7/conf.d/'
-alias xoff='mv /etc/php7/conf.d/xdebug.ini /tmp'
+alias xon='mv /tmp/xdebug.ini /etc/php7.1/conf.d/'
+alias xoff='mv /etc/php7.1/conf.d/xdebug.ini /tmp'
 
 alias profile='XDEBUG_CONFIG="profiler_enable=1 xdebug.profiler_output_name=profiler.out.%p profiler_output_dir=." php'
 
