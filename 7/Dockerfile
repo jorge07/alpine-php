@@ -1,4 +1,4 @@
-FROM alpine:3.5
+FROM alpine:edge
 
 MAINTAINER Jorge Arco <jorge.arcoma@gmail.com>
 
