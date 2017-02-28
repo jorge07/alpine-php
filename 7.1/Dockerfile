@@ -1,4 +1,4 @@
-FROM alpine:3.5
+FROM alpine:edge
 
 MAINTAINER Jorge Arco <jorge.arcoma@gmail.com>
 
@@ -6,7 +6,6 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositor
     && apk add --update \
     tini \
     php7.1 \
-
     php7.1-bcmath \
     php7.1-ctype \
     php7.1-curl \
