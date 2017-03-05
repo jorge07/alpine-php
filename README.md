@@ -2,7 +2,11 @@
 
 [![Build Status](https://travis-ci.org/jorge07/alpine-php.svg?branch=master)](https://travis-ci.org/jorge07/alpine-php)
 
-Minimal PHP containers based on Alpine. Contains **tags** for development environments and adapted for various frameworks like [Symfony](http://symfony.com/) and [Wordpress](https://github.com/WordPress/WordPress).
+Minimal PHP images based on Alpine. Contains **tags** for development environments and adapted for various frameworks like [Symfony](http://symfony.com/) and [Wordpress](https://github.com/WordPress/WordPress).
+
+## Documentation
+
+[Read about Documentation and examples here](https://github.com/jorge07/alpine-php/tree/master/doc/README.md)
 
 ## Quick start Dev environment:
 
@@ -38,8 +42,3 @@ Run example:
 | 7-dev-wp   |   7-dev    | + wp-cli, wp-autocompletion                                                       | [![](https://images.microbadger.com/badges/image/jorge07/alpine-php:7-dev-wp.svg)](https://microbadger.com/images/jorge07/alpine-php:7-dev-wp "Get your own image badge on microbadger.com")
 | 5.6-wp     |    5.6     | + upload-volume                                                                   | [![](https://images.microbadger.com/badges/image/jorge07/alpine-php:5.6-wp.svg)](https://microbadger.com/images/jorge07/alpine-php:5.6-wp "Get your own image badge on microbadger.com")
 | 5.6-dev-wp |  5.6-dev   | + wp-cli, wp-autocompletion                                                       | [![](https://images.microbadger.com/badges/image/jorge07/alpine-php:5.6-dev-wp.svg)](https://microbadger.com/images/jorge07/alpine-php:5.6-dev-wp "Get your own image badge on microbadger.com")
-
-Documentation
--------------
-
-[Read the Documentation](https://github.com/jorge07/alpine-php/tree/master/doc/README.md)
