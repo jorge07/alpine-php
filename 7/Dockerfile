@@ -1,6 +1,6 @@
 FROM alpine:edge
 
-MAINTAINER Jorge Arco <jorge.arcoma@gmail.com>
+LABEL maintainer "Jorge Arco <jorge.arcoma@gmail.com>"
 
 RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
     && apk add --update \
