@@ -12,15 +12,15 @@ Minimal PHP images based on Alpine. Contains **tags** for development environmen
 
 Run example:
 
-    docker run -it jorge07/alpine-php:7.1-dev psysh
-    Psy Shell v0.8.1 (PHP 7.0.15 — cli) by Justin Hileman
+    $ docker run -it jorge07/alpine-php:7.1-dev psysh
+    Psy Shell v0.8.2 (PHP 7.1.2 — cli) by Justin Hileman
     >>> new DateTime()
-    => DateTime {#170
-         +"date": "2017-02-16 11:46:55.000000",
+    => DateTime {#173
+         +"date": "2017-03-11 22:41:13.040900",
          +"timezone_type": 3,
          +"timezone": "UTC",
        }
-    >>> 
+    >>>
 
 
 ## Content table
