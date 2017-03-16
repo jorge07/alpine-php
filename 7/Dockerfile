@@ -23,6 +23,7 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositor
     php7-pdo_mysql \
     php7-pdo_pgsql \
     php7-pdo_sqlite \
+    php7-xmlwriter \
     php7-phar \
     php7-posix \
     php7-session \
