@@ -1,15 +1,14 @@
 # Alpine PHP 
 [![Build Status](https://travis-ci.org/jorge07/alpine-php.svg?branch=master)](https://travis-ci.org/jorge07/alpine-php)
 
-Minimal PHP images based on Alpine. Contains **tags** for development environments and adapted for various frameworks like [Symfony](http://symfony.com/) and [Wordpress](https://github.com/WordPress/WordPress).
-
+Minimal PHP Docker images based on Alpine. Contains **tags** for development environments and adapted for various frameworks like [Symfony](http://symfony.com/) and [Wordpress](https://github.com/WordPress/WordPress).
 
 
 [![nodesource/node](http://dockeri.co/image/jorge07/alpine-php)](https://registry.hub.docker.com/u/jorge07/alpine-php/)
 
 ## Documentation
 
-[Read about Documentation and examples here](https://github.com/jorge07/alpine-php/tree/master/doc/README.md)
+[Read about Documentation and see some examples here](https://github.com/jorge07/alpine-php/tree/master/doc/README.md)
 
 ## Quick start Dev environment:
 
