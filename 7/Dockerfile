@@ -30,7 +30,6 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/community" >> /etc/apk/reposit
     php7-xsl \
     php7-zip \
     php7-zlib \
-    php7-redis \
     php7-fpm \
     && ln -s /usr/bin/php7 /usr/bin/php \
     && rm -rf /var/cache/apk/*
