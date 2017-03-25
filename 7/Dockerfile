@@ -2,7 +2,7 @@ FROM alpine:edge
 
 LABEL maintainer "Jorge Arco <jorge.arcoma@gmail.com>"
 
-RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+RUN echo "http://dl-4.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
     && apk add --update \
     tini \
     php7 \
