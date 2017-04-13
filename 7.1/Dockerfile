@@ -5,7 +5,7 @@ LABEL maintainer "Jorge Arco <jorge.arcoma@gmail.com>"
 RUN echo "@edge-main http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
     && echo "@edge-testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
     && wget -O /etc/apk/keys/diego@hernandev.com-58b4c2e0.rsa.pub http://php.codecasts.rocks/php-alpine.pub \
-    && echo "@cast http://php.codecasts.rocks/7.1" >> /etc/apk/repositories \
+    && echo "@cast http://php.codecasts.rocks/7.1/" >> /etc/apk/repositories \
 
     && apk add -U \
 
