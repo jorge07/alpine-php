@@ -2,10 +2,14 @@ FROM jorge07/alpine-php:7.1-dev
 
 COPY config/env/wordpress /tmp/profile
 
-RUN cat /tmp/profile >> /etc/profile && rm -rf /tmp/profile \
+RUN apk --update add mysql-client \
+
+    && cat /tmp/profile >> /etc/profile && rm -rf /tmp/profile \
     && curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
     && chmod +x wp-cli.phar \
     && mv wp-cli.phar /usr/bin/wp \
 
     && curl -O https://raw.githubusercontent.com/wp-cli/wp-cli/master/utils/wp-completion.bash \
-    && mv wp-completion.bash ~/wp-completion.wp
+    && mv wp-completion.bash ~/wp-completion.wp \
+
+    && rm -rf /var/cache/apk/*
