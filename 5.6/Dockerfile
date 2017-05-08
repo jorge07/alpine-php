@@ -15,7 +15,6 @@ RUN apk add -U --no-cache \
     php5-iconv \
     php5-intl \
     php5-json \
-    php5-libsodium \
     php5-mysqli \
     php5-opcache \
     php5-openssl \
@@ -29,7 +28,6 @@ RUN apk add -U --no-cache \
     php5-xsl \
     php5-zip \
     php5-zlib \
-    php5-redis \
     php5-fpm \
     php5-mcrypt \
 
