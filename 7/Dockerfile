@@ -2,8 +2,8 @@ FROM alpine:3.5
 
 LABEL maintainer "Jorge Arco <jorge.arcoma@gmail.com>"
 
-RUN echo "@main http://dl-cdn.alpinelinux.org/alpine/3.5/main" >> /etc/apk/repositories \
-    && echo "@community http://dl-cdn.alpinelinux.org/alpine/3.5/community" >> /etc/apk/repositories \
+RUN echo "@main http://dl-cdn.alpinelinux.org/alpine/v3.5/main" >> /etc/apk/repositories \
+    && echo "@community http://dl-cdn.alpinelinux.org/alpine/v3.5/community" >> /etc/apk/repositories \
 
     && apk add -U \
 
@@ -33,7 +33,6 @@ RUN echo "@main http://dl-cdn.alpinelinux.org/alpine/3.5/main" >> /etc/apk/repos
     php7-xsl@community \
     php7-zip@community \
     php7-zlib@community \
-    php7-redis@community \
     php7-fpm@community \
 
     && rm -rf /var/cache/apk/*
