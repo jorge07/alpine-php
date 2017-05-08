@@ -31,6 +31,7 @@ RUN echo "@edge-main http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk
     php7-posix@edge-community \
     php7-session@edge-community \
     php7-xml@edge-community \
+    php7-simplexml@edge-community \
     php7-mcrypt@edge-community \
     php7-xsl@edge-community \
     php7-zip@edge-community \
