@@ -1,10 +1,8 @@
-FROM alpine:edge
+FROM alpine:3.5
 
 LABEL maintainer "Jorge Arco <jorge.arcoma@gmail.com>"
 
-RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
-    && apk update \
-    && apk add --no-cache \
+RUN apk add -U --no-cache \
     tini \
     php5 \
     php5-apcu \
@@ -17,7 +15,6 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositor
     php5-iconv \
     php5-intl \
     php5-json \
-    php5-libsodium \
     php5-mysqli \
     php5-opcache \
     php5-openssl \
@@ -31,9 +28,9 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositor
     php5-xsl \
     php5-zip \
     php5-zlib \
-    php5-redis \
     php5-fpm \
     php5-mcrypt \
+
     && rm -rf /var/cache/apk/*
 
 ADD rootfs /

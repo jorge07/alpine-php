@@ -5,7 +5,7 @@ ARG PASSWORD=root
 
 ARG COMPOSER_VERSION=1.2.1
 
-RUN apk add --no-cache \
+RUN apk add -U --no-cache \
         openssh \
         supervisor \
         git \

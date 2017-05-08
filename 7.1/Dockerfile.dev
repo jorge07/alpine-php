@@ -6,35 +6,25 @@ ARG PASSWORD=root
 ARG COMPOSER_VERSION=1.3.2
 ARG XDEBUG_VERSION=2.5.1
 
-RUN apk add --no-cache \
-        php7-dev \
+RUN apk add -U --no-cache \
         php7-pear \
         openssh \
         supervisor \
         autoconf \
         git \
+        curl \
+        wget \
         apache-ant \
         zip \
-        wget \
-        autoconf \
-        gcc \
-        make \
-        g++ \
-        curl \
-    && rm -rf /var/cache/apk/* \
+        php7-xdebug@edge-community\
 
-    && cd /tmp && wget http://xdebug.org/files/xdebug-${XDEBUG_VERSION}.tgz \
-    && tar -zxvf xdebug-${XDEBUG_VERSION}.tgz \
-    && cd xdebug-${XDEBUG_VERSION} && phpize \
-    && ./configure --enable-xdebug && make && make install \
-    && cd \
-    && rm -rf /tmp/* \
+    && rm -rf /var/cache/apk/* \
 
     && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config \
     && echo "${USER}:${PASSWORD}" | chpasswd \
     && ssh-keygen -A \
 
-    && curl -sS https://getcomposer.org/installer | php7 -- --install-dir=/usr/bin --filename=composer --version=${COMPOSER_VERSION} \
+    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer --version=${COMPOSER_VERSION} \
     && composer global require "hirak/prestissimo:0.3.5" \
 
     && wget https://git.io/psysh \
