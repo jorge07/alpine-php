@@ -1,41 +1,41 @@
-FROM alpine:edge
+FROM alpine:3.5
 
 LABEL maintainer "Jorge Arco <jorge.arcoma@gmail.com>"
 
-RUN echo "@edge-main http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
-    && echo "@edge-community http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
+RUN echo "@main http://dl-cdn.alpinelinux.org/alpine/3.5/main" >> /etc/apk/repositories \
+    && echo "@community http://dl-cdn.alpinelinux.org/alpine/3.5/community" >> /etc/apk/repositories \
 
     && apk add -U \
 
     tini \
-    php7@edge-community \
-    php7-apcu@edge-community \
-    php7-bcmath@edge-community \
-    php7-ctype@edge-community \
-    php7-curl@edge-community \
-    php7-exif@edge-community \
-    php7-iconv@edge-community \
-    php7-intl@edge-community \
-    php7-json@edge-community \
-    php7-mbstring@edge-community \
-    php7-opcache@edge-community \
-    php7-openssl@edge-community \
-    php7-pcntl@edge-community \
-    php7-pdo_mysql@edge-community \
-    php7-pdo_pgsql@edge-community \
-    php7-pdo_sqlite@edge-community \
-    php7-phar@edge-community \
-    php7-posix@edge-community \
-    php7-session@edge-community \
-    php7-xml@edge-community \
-    php7-mcrypt@edge-community \
-    php7-xsl@edge-community \
-    php7-zip@edge-community \
-    php7-zlib@edge-community \
-    php7-redis@edge-community \
-    php7-fpm@edge-community \
+    php7@community \
+    php7-dev@community \
+    php7-apcu@community \
+    php7-bcmath@community \
+    php7-ctype@community \
+    php7-curl@community \
+    php7-exif@community \
+    php7-iconv@community \
+    php7-intl@community \
+    php7-json@community \
+    php7-mbstring@community \
+    php7-opcache@community \
+    php7-openssl@community \
+    php7-pcntl@community \
+    php7-pdo_mysql@community \
+    php7-pdo_pgsql@community \
+    php7-pdo_sqlite@community \
+    php7-phar@community \
+    php7-posix@community \
+    php7-session@community \
+    php7-xml@community \
+    php7-mcrypt@community \
+    php7-xsl@community \
+    php7-zip@community \
+    php7-zlib@community \
+    php7-redis@community \
+    php7-fpm@community \
 
-    && ln -s /usr/bin/php7 /usr/bin/php \
     && rm -rf /var/cache/apk/*
 
 ADD rootfs /
