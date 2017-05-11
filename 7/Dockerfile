@@ -35,7 +35,6 @@ RUN echo "@main http://dl-cdn.alpinelinux.org/alpine/v3.5/main" >> /etc/apk/repo
     php7-zlib@community \
     php7-fpm@community \
     php7-redis@cast \
-    php7-tokenizer@cast \
 
     && ln -s /usr/bin/php7 /usr/bin/php \
     && rm -rf /var/cache/apk/*
