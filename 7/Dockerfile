@@ -4,7 +4,7 @@ LABEL maintainer "Jorge Arco <jorge.arcoma@gmail.com>"
 
 RUN echo "@main http://dl-cdn.alpinelinux.org/alpine/v3.5/main" >> /etc/apk/repositories \
     && echo "@community http://dl-cdn.alpinelinux.org/alpine/v3.5/community" >> /etc/apk/repositories \
-
+    && echo "@cast http://php.codecasts.rocks/7.0" >> /etc/apk/repositories \
     && apk add -U \
 
     tini \
@@ -34,6 +34,8 @@ RUN echo "@main http://dl-cdn.alpinelinux.org/alpine/v3.5/main" >> /etc/apk/repo
     php7-zip@community \
     php7-zlib@community \
     php7-fpm@community \
+    php7-redis@community \
+    php7-tokenizer@community \
 
     && ln -s /usr/bin/php7 /usr/bin/php \
     && rm -rf /var/cache/apk/*
