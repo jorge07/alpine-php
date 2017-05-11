@@ -2,6 +2,8 @@ FROM alpine:3.5
 
 LABEL maintainer "Jorge Arco <jorge.arcoma@gmail.com>"
 
+ADD https://php.codecasts.rocks/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
+
 RUN echo "@main http://dl-cdn.alpinelinux.org/alpine/v3.5/main" >> /etc/apk/repositories \
     && echo "@community http://dl-cdn.alpinelinux.org/alpine/v3.5/community" >> /etc/apk/repositories \
     && echo "@cast http://php.codecasts.rocks/7.0" >> /etc/apk/repositories \
