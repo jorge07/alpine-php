@@ -8,6 +8,7 @@ I recommend build the artifact in the `jorge07/alpine-php:*-dev` image.
 
 **Dockerfile.build**
 
+```Dockerfile
     FROM jorge07/alpine-php:7-dev
     
     ENV SYMFONY_ENV prod
@@ -26,15 +27,18 @@ I recommend build the artifact in the `jorge07/alpine-php:*-dev` image.
     COPY web /app/web
     
     RUN php /app/bin/console c:w
+```
 
 #### Important
 
 To optimize build times using [Docker cache](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/#/build-cache) I recommend add the src folders at the end of the *Dockerfile* after run `composer` and or `npm`.
 
+```Dockerfile
     RUN composer install --no-ansi --no-scripts --no-dev --no-interaction --no-progress --optimize-autoloader
     
     COPY src /app/src
     COPY web /app/web
+```
 
 ## Build Artifact
 
@@ -62,6 +66,7 @@ Extend Image. Add you PHP configuration and copy the entire artifact.
 
 *Dockerfile.prod*
 
+```Dockerfile
     FROM jorge07/alpine-php:7
 
     COPY config/php/php.ini /etc/php7/conf.d/50-setting.ini
@@ -78,6 +83,7 @@ Extend Image. Add you PHP configuration and copy the entire artifact.
     COPY app/vendor /app/vendor
     
     RUN php /app/bin/console c:w
+```
 
 **Build and Store final production image**
 
