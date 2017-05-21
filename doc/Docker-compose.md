@@ -3,23 +3,23 @@
 Minimal Configuration:
 
 ```YAML
-    version: '2'
-    services:
-      fpm:
-          image: jorge07/alpine-php:7-dev
-          ports:
-            - "2244:22"
-            - "9000:9000"
-          volumes:
-            - "$PWD:/app"
+version: '2'
+services:
+  fpm:
+      image: jorge07/alpine-php:7-dev
+      ports:
+        - "2244:22"
+        - "9000:9000"
+      volumes:
+        - "$PWD:/app"
 ```
 You can optionally add ENV params:
 ```YAML
 
-     ...
-       fpm:
-          environment:
-            - PHP_IDE_CONFIG=serverName=SomeName
+ ...
+   fpm:
+      environment:
+        - PHP_IDE_CONFIG=serverName=SomeName
 ```
 # Nginx integration
 
@@ -31,51 +31,53 @@ Project structure:
 
 *etc/infrastructure/dev/nginx/demo.conf*
 
-     server {
-         server_name ddd.dev www.ddd.dev;
-         root /app/web;
+```nginx
+server {
+  server_name ddd.dev www.ddd.dev;
+  root /app/web;
 
-         location / {
-             try_files $uri /app_dev.php$is_args$args;
-         }
-         
-         location ~ ^/(app|app_dev|config)\.php(/|$) {
-             
-             fastcgi_pass fpm:9000;
-             fastcgi_split_path_info ^(.+\.php)(/.*)$;
-             include fastcgi_params;
-             
-             fastcgi_param  SCRIPT_FILENAME  $realpath_root$fastcgi_script_name;
-             fastcgi_param DOCUMENT_ROOT $realpath_root;
-         }
-     }
-     
+  location / {
+     try_files $uri /app_dev.php$is_args$args;
+  }
+
+  location ~ ^/(app|app_dev|config)\.php(/|$) {
+
+     fastcgi_pass fpm:9000;
+     fastcgi_split_path_info ^(.+\.php)(/.*)$;
+     include fastcgi_params;
+
+     fastcgi_param  SCRIPT_FILENAME  $realpath_root$fastcgi_script_name;
+     fastcgi_param DOCUMENT_ROOT $realpath_root;
+  }
+}
+```
+
 *etc/infrastructure/dev/nginx/Dockerfile*
 ```Dockerfile
-     FROM nginx:1.11-alpine
+ FROM nginx:1.11-alpine
 
-     COPY ddd.conf /etc/nginx/conf.d/default.conf
+ COPY ddd.conf /etc/nginx/conf.d/default.conf
 ```
 */etc/infrastructure/dev/docker-compose.yml*
 ```YAML
-     version: '2'
-     services:
-       nginx:
-         build: nginx
-         depends_on:
-           - fpm
-         ports:
-           - "80:80"
-         volumes:
-           - "$PWD/web:/app/web"
+ version: '2'
+ services:
+   nginx:
+     build: nginx
+     depends_on:
+       - fpm
+     ports:
+       - "80:80"
+     volumes:
+       - "$PWD/web:/app/web"
 
-       fpm:
-         image: jorge07/alpine-php:7-dev
-         ports:
-           - "2244:22"
-           - "9000:9000"
-         volumes:
-           - "$PWD:/app"
+   fpm:
+     image: jorge07/alpine-php:7-dev
+     ports:
+       - "2244:22"
+       - "9000:9000"
+     volumes:
+       - "$PWD:/app"
 ```
 Up enviroment
 
