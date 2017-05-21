@@ -2,6 +2,7 @@
 
 Minimal Configuration:
 
+```YAML
     version: '2'
     services:
       fpm:
@@ -11,14 +12,15 @@ Minimal Configuration:
             - "9000:9000"
           volumes:
             - "$PWD:/app"
-          
+```
 You can optionally add ENV params:
+```YAML
 
      ...
        fpm:
           environment:
             - PHP_IDE_CONFIG=serverName=SomeName
-
+```
 # Nginx integration
 
 This example is based on a [Symfony](http://symfony.com/) project but can be what you want. Full example [here](https://github.com/jorge07/ddd-playground)
@@ -49,13 +51,13 @@ Project structure:
      }
      
 *etc/infrastructure/dev/nginx/Dockerfile*
-
+```Dockerfile
      FROM nginx:1.11-alpine
 
      COPY ddd.conf /etc/nginx/conf.d/default.conf
-
+```
 */etc/infrastructure/dev/docker-compose.yml*
-
+```YAML
      version: '2'
      services:
        nginx:
@@ -74,7 +76,7 @@ Project structure:
            - "9000:9000"
          volumes:
            - "$PWD:/app"
-
+```
 Up enviroment
 
      $ docker-compose -f /etc/infrastructure/dev/docker-compose.yml up -d
