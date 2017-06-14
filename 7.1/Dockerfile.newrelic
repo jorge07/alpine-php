@@ -1,0 +1,22 @@
+FROM jorge07/alpine-php:7.1
+
+ENV NR_INSTALL_SILENT 1
+ENV NR_INSTALL_KEY ""
+ENV NR_APP_NAME "Default App Name"
+
+RUN apk add -U --no-cache wget curl \
+
+    && mkdir /tmp/newrelic \
+    && cd /tmp/newrelic \
+
+    && wget "http://download.newrelic.com/php_agent/release/$(curl http://download.newrelic.com/php_agent/release/ | grep -ohE 'newrelic-php5-.*?-linux-musl.tar.gz' | cut -f1 -d\")" -O php-agent.tar.gz \
+    && gzip -dc php-agent.tar.gz | tar xf - \
+    && mkdir -p /opt/newrelic \
+
+    && cp -a "$(ls | grep 'newrelic')/." /opt/newrelic/ \
+
+    && rm -rf /tmp/newrelic
+
+ADD /rootfs /
+
+CMD ["/etc/newrelic/bootstrap.sh"]
