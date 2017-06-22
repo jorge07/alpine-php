@@ -7,40 +7,40 @@ This pipeline its just an example, for a more accurate approach see [here](https
 **Dockerfile.build**
 
 ```Dockerfile
-    FROM jorge07/alpine-php:7.1-dev-sf as builder
+FROM jorge07/alpine-php:7.1-dev-sf as builder
 
-    WORKDIR /api
+WORKDIR /api
 
-    ENV SYMFONY_ENV prod
+ENV SYMFONY_ENV prod
 
-    COPY app /api/app
-    COPY bin /api/bin
-    COPY var /api/var
+COPY app /api/app
+COPY bin /api/bin
+COPY var /api/var
 
-    COPY composer.json /api
-    COPY composer.lock /api
+COPY composer.json /api
+COPY composer.lock /api
 
-    RUN composer install --no-ansi --no-scripts --no-dev --no-interaction --no-progress --optimize-autoloader
+RUN composer install --no-ansi --no-scripts --no-dev --no-interaction --no-progress --optimize-autoloader
 
-    COPY src /api/src
-    COPY web /api/web
+COPY src /api/src
+COPY web /api/web
 
-    RUN composer run-script post-install-cmd \
-        && rm -rf /api/web/app_dev.php \
-        && rm -rf /api/web/config.php
+RUN composer run-script post-install-cmd \
+    && rm -rf /api/web/app_dev.php \
+    && rm -rf /api/web/config.php
 
-    FROM jorge07/alpine-php:7.1
+FROM jorge07/alpine-php:7.1
 
-    ENV SYMFONY_ENV prod
+ENV SYMFONY_ENV prod
 
-    COPY --from builder /api/app/app /app/app
-    COPY --from builder /api/app/bin /app/bin
-    COPY --from builder /api/app/var /app/var
-    COPY --from builder /api/app/web /app/web
-    COPY --from builder /api/app/src /app/src
-    COPY --from builder /api/app/vendor /app/vendor
+COPY --from builder /api/app/app /app/app
+COPY --from builder /api/app/bin /app/bin
+COPY --from builder /api/app/var /app/var
+COPY --from builder /api/app/web /app/web
+COPY --from builder /api/app/src /app/src
+COPY --from builder /api/app/vendor /app/vendor
 
-    RUN rm -rf /app/var/cache/* && php /app/bin/console c:c
+RUN rm -rf /app/var/cache/* && php /app/bin/console c:c
 ```
 
 ## Older versions
@@ -52,24 +52,24 @@ I recommend build the artifact in the `jorge07/alpine-php:*-dev` image.
 **Dockerfile.build**
 
 ```Dockerfile
-    FROM jorge07/alpine-php:7-dev
-    
-    ENV SYMFONY_ENV prod
-    
-    COPY app /app/app
-    COPY parameters.yml /app/app/config/parameters.yml
-    COPY bin /app/bin
-    COPY var /app/var
-    
-    COPY composer.json /app
-    COPY composer.lock /app
-    
-    RUN composer install --no-ansi --no-scripts --no-dev --no-interaction --no-progress --optimize-autoloader
-    
-    COPY src /app/src
-    COPY web /app/web
-    
-    RUN php /app/bin/console c:w
+FROM jorge07/alpine-php:7-dev
+
+ENV SYMFONY_ENV prod
+
+COPY app /app/app
+COPY parameters.yml /app/app/config/parameters.yml
+COPY bin /app/bin
+COPY var /app/var
+
+COPY composer.json /app
+COPY composer.lock /app
+
+RUN composer install --no-ansi --no-scripts --no-dev --no-interaction --no-progress --optimize-autoloader
+
+COPY src /app/src
+COPY web /app/web
+
+RUN php /app/bin/console c:w
 ```
 
 #### Important
@@ -77,10 +77,10 @@ I recommend build the artifact in the `jorge07/alpine-php:*-dev` image.
 To optimize build times using [Docker cache](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/#/build-cache) I recommend add the src folders at the end of the *Dockerfile* after run `composer` and or `npm`.
 
 ```Dockerfile
-    RUN composer install --no-ansi --no-scripts --no-dev --no-interaction --no-progress --optimize-autoloader
-    
-    COPY src /app/src
-    COPY web /app/web
+RUN composer install --no-ansi --no-scripts --no-dev --no-interaction --no-progress --optimize-autoloader
+
+COPY src /app/src
+COPY web /app/web
 ```
 
 ### Build Artifact
@@ -110,22 +110,22 @@ Extend Image. Add you PHP configuration and copy the entire artifact.
 *Dockerfile.prod*
 
 ```Dockerfile
-    FROM jorge07/alpine-php:7
+FROM jorge07/alpine-php:7
 
-    COPY config/php/php.ini /etc/php7/conf.d/50-setting.ini
-    COPY config/php/php-fpm.conf /etc/php7/php-fpm.conf
-    
-    ENV SYMFONY_ENV prod
-    
-    COPY app/app /app/app
-    COPY fpm/parameters.yml /app/app/config/parameters.yml
-    COPY app/bin /app/bin
-    COPY app/var /app/var
-    COPY app/web /app/web
-    COPY app/src /app/src
-    COPY app/vendor /app/vendor
-    
-    RUN php /app/bin/console c:w
+COPY config/php/php.ini /etc/php7/conf.d/50-setting.ini
+COPY config/php/php-fpm.conf /etc/php7/php-fpm.conf
+
+ENV SYMFONY_ENV prod
+
+COPY app/app /app/app
+COPY fpm/parameters.yml /app/app/config/parameters.yml
+COPY app/bin /app/bin
+COPY app/var /app/var
+COPY app/web /app/web
+COPY app/src /app/src
+COPY app/vendor /app/vendor
+
+RUN php /app/bin/console c:w
 ```
 
 **Build and Store final production image**
