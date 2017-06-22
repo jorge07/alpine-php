@@ -2,7 +2,50 @@
 
 This pipeline its just an example, for a more accurate approach see [here](https://github.com/jorge07/ddd-playground)
 
-## Build environment
+### Using Milti stage build
+
+**Dockerfile.build**
+
+```Dockerfile
+    FROM jorge07/alpine-php:7.1-dev-sf as builder
+
+    WORKDIR /api
+
+    ENV SYMFONY_ENV prod
+
+    COPY app /api/app
+    COPY bin /api/bin
+    COPY var /api/var
+
+    COPY composer.json /api
+    COPY composer.lock /api
+
+    RUN composer install --no-ansi --no-scripts --no-dev --no-interaction --no-progress --optimize-autoloader
+
+    COPY src /api/src
+    COPY web /api/web
+
+    RUN composer run-script post-install-cmd \
+        && rm -rf /api/web/app_dev.php \
+        && rm -rf /api/web/config.php
+
+    FROM jorge07/alpine-php:7.1
+
+    ENV SYMFONY_ENV prod
+
+    COPY --from builder /api/app/app /app/app
+    COPY --from builder /api/app/bin /app/bin
+    COPY --from builder /api/app/var /app/var
+    COPY --from builder /api/app/web /app/web
+    COPY --from builder /api/app/src /app/src
+    COPY --from builder /api/app/vendor /app/vendor
+
+    RUN rm -rf /app/var/cache/* && php /app/bin/console c:c
+```
+
+## Older versions
+
+### Build environment
 
 I recommend build the artifact in the `jorge07/alpine-php:*-dev` image.
 
@@ -40,7 +83,7 @@ To optimize build times using [Docker cache](https://docs.docker.com/engine/user
     COPY web /app/web
 ```
 
-## Build Artifact
+### Build Artifact
 
 **Build image**
 
