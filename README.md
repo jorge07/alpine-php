@@ -14,22 +14,22 @@ Minimal PHP Docker images based on Alpine. Contains **tags** for development env
 
 In your project root:
 ```sh
-    docker run -itd --name dev -p 9000:9000 -p 2244:22 -v $PWD:/app jorge07/alpine-php:7.1-dev
+docker run -itd --name dev -p 9000:9000 -p 2244:22 -v $PWD:/app jorge07/alpine-php:7.1-dev
 ```
 
 
 Run PHP shell example:
 
 ```sh
-    $ docker run -it dev psysh
-    Psy Shell v0.8.2 (PHP 7.1.2 — cli) by Justin Hileman
-    >>> new DateTime()
-    => DateTime {#173
-         +"date": "2017-03-11 22:41:13.040900",
-         +"timezone_type": 3,
-         +"timezone": "UTC",
-       }
-    >>>
+$ docker run -it dev psysh
+Psy Shell v0.8.2 (PHP 7.1.2 — cli) by Justin Hileman
+>>> new DateTime()
+=> DateTime {#173
+     +"date": "2017-03-11 22:41:13.040900",
+     +"timezone_type": 3,
+     +"timezone": "UTC",
+   }
+>>>
 ```
 
 ## Content table
