@@ -33,7 +33,7 @@ Project structure:
 
 ```nginx
 server {
-  server_name ddd.dev www.ddd.dev;
+  server_name demo.dev www.demo.dev;
   root /app/web;
 
   location / {
@@ -56,7 +56,7 @@ server {
 ```Dockerfile
  FROM nginx:1.11-alpine
 
- COPY ddd.conf /etc/nginx/conf.d/default.conf
+ COPY demo.conf /etc/nginx/conf.d/default.conf
 ```
 */etc/infrastructure/dev/docker-compose.yml*
 ```YAML
