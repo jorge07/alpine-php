@@ -1,8 +1,9 @@
 # Alpine PHP 
-[![Build Status](https://travis-ci.org/jorge07/alpine-php.svg?branch=master)](https://travis-ci.org/jorge07/alpine-php) [![Anchore Image Policy](https://anchore.io/service/badges/policy/fb3efc7a464467f4f3a069d7dfc2124c21b89e93f8cb9ec4afd101aec3b8767e)](https://anchore.io/image/dockerhub/fb3efc7a464467f4f3a069d7dfc2124c21b89e93f8cb9ec4afd101aec3b8767e?repo=jorge07%2Falpine-php&tag=7) [![](https://img.shields.io/docker/pulls/jorge07/alpine-php.svg)](https://hub.docker.com/r/jorge07/alpine-php/)
-
+[![Build Status](https://travis-ci.org/jorge07/alpine-php.svg?branch=master)](https://travis-ci.org/jorge07/alpine-php) [![](https://img.shields.io/docker/pulls/jorge07/alpine-php.svg)](https://hub.docker.com/r/jorge07/alpine-php/)
 
 Minimal PHP Docker images based on Alpine. Contains **tags** for development environments and adapted for various frameworks like [Symfony](http://symfony.com/) and [Wordpress](https://github.com/WordPress/WordPress).
+
+[![nodesource/node](http://dockeri.co/image/jorge07/alpine-php)](https://registry.hub.docker.com/u/jorge07/alpine-php/)
 
 ## Documentation
 
