@@ -11,39 +11,19 @@ Minimal PHP Docker images based on Alpine. Contains **tags** for development env
 
 ## Images
 
-[7.1](https://github.com/jorge07/alpine-php/blob/master/7.1/Dockerfile)
-
-[7](https://github.com/jorge07/alpine-php/blob/master/7/Dockerfile)
-
-[5.6](https://github.com/jorge07/alpine-php/blob/master/5.6/Dockerfile)
+- [7.1](https://github.com/jorge07/alpine-php/blob/master/7.1/Dockerfile)
+- [7](https://github.com/jorge07/alpine-php/blob/master/7/Dockerfile)
+- [5.6](https://github.com/jorge07/alpine-php/blob/master/5.6/Dockerfile)
 
 ## Dev Images
 
 Dev images extend the standard ones and add some tools for development and CI like, composer, xdebug, etc...
 
-#### General propose
-
-[7.1-dev](https://github.com/jorge07/alpine-php/blob/master/7.1/Dockerfile.dev), [7.1-front](https://github.com/jorge07/alpine-php/blob/master/7.1/Dockerfile.front)
-
-[7-dev](https://github.com/jorge07/alpine-php/blob/master/7/Dockerfile.dev), [7-front](https://github.com/jorge07/alpine-php/blob/master/7/Dockerfile.front)
-[5.6-dev](https://github.com/jorge07/alpine-php/blob/master/5.6/Dockerfile.dev)
-
-#### Symfony
-
-[7.1-dev-sf](https://github.com/jorge07/alpine-php/blob/symfony/7.1/Dockerfile.dev), [7.1-front-sf](https://github.com/jorge07/alpine-php/blob/symfony/7.1/Dockerfile.front)
-
-[7-dev-sf](https://github.com/jorge07/alpine-php/blob/symfony/7/Dockerfile.dev), [7-front-sf](https://github.com/jorge07/alpine-php/blob/symfony/7/Dockerfile.front)
-
-[5.6-dev-sf](https://github.com/jorge07/alpine-php/blob/symfony/5.6/Dockerfile.dev)
-
-#### Wordpress
-
-[7.1-dev-wp](https://github.com/jorge07/alpine-php/blob/wordpress/7.1/Dockerfile.dev)
-
-[7-dev-wp](https://github.com/jorge07/alpine-php/blob/wordpress/7/Dockerfile.dev)
-
-[5.6-dev-wp](https://github.com/jorge07/alpine-php/blob/wordpress/5.6/Dockerfile.dev)
-
+| General purpose     | Symfony     | Wordpress                                                                   
+|---------------------|-------------|-------------------
+| [7.1-dev](https://github.com/jorge07/alpine-php/blob/master/7.1/Dockerfile.dev), [7.1-front](https://github.com/jorge07/alpine-php/blob/master/7.1/Dockerfile.front) | [7.1-dev-sf](https://github.com/jorge07/alpine-php/blob/symfony/7.1/Dockerfile.dev), [7.1-front-sf](https://github.com/jorge07/alpine-php/blob/symfony/7.1/Dockerfile.front) | [7.1-dev-wp](https://github.com/jorge07/alpine-php/blob/wordpress/7.1/Dockerfile.dev)
+| [7-dev](https://github.com/jorge07/alpine-php/blob/master/7/Dockerfile.dev), [7-front](https://github.com/jorge07/alpine-php/blob/master/7/Dockerfile.front) | [7-dev-sf](https://github.com/jorge07/alpine-php/blob/symfony/7/Dockerfile.dev), [7-front-sf](https://github.com/jorge07/alpine-php/blob/symfony/7/Dockerfile.front) | [7-dev-wp](https://github.com/jorge07/alpine-php/blob/wordpress/7/Dockerfile.dev)
+| [5.6-dev](https://github.com/jorge07/alpine-php/blob/master/5.6/Dockerfile.dev) | [5.6-dev-sf](https://github.com/jorge07/alpine-php/blob/symfony/5.6/Dockerfile.dev) | [5.6-dev-wp](https://github.com/jorge07/alpine-php/blob/wordpress/5.6/Dockerfile.dev)
 
 ## Usage:
 
