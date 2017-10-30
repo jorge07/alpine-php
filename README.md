@@ -15,7 +15,7 @@ Minimal PHP Docker images based on Alpine. Contains **tags** for development env
 - [7](https://github.com/jorge07/alpine-php/blob/master/7/Dockerfile)
 - [5.6](https://github.com/jorge07/alpine-php/blob/master/5.6/Dockerfile)
 
-## Dev Images
+## Dev Dockerfiles
 
 Dev images extend the standard ones and add some tools for development and CI like, composer, xdebug, etc...
 
