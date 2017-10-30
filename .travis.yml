@@ -12,6 +12,8 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
   - chmod +x /usr/local/bin/docker-compose
 
+  - docker version
+
   - docker build -t jorge07/alpine-php:7.1 -f 7.1/Dockerfile 7.1/
   - docker build -t jorge07/alpine-php:7.1-dev -f 7.1/Dockerfile.dev 7.1/
   - docker build -t jorge07/alpine-php:7.1-front -f 7.1/Dockerfile.front 7.1/
