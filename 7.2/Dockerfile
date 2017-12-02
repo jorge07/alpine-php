@@ -1,13 +1,8 @@
-FROM alpine:3.7
+FROM alpine:edge
 
 LABEL maintainer="Jorge Arco <jorge.arcoma@gmail.com>"
 
-ADD https://php.codecasts.rocks/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
-
-RUN apk --update add ca-certificates \
-    && echo "@edge-main http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
-    && echo "@edge-community http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
-    && echo "@cast https://php.codecasts.rocks/v3.7/php-7.2" >> /etc/apk/repositories \
+RUN echo "@cast http://php.codecasts.rocks/7.0" >> /etc/apk/repositories \
     && apk add -U \
 
     tini \
