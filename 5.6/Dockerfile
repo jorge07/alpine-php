@@ -1,6 +1,6 @@
 FROM alpine:3.5
 
-LABEL maintainer "Jorge Arco <jorge.arcoma@gmail.com>"
+LABEL maintainer="Jorge Arco <jorge.arcoma@gmail.com>"
 
 RUN apk add -U --no-cache \
     tini \

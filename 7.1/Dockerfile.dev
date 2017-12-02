@@ -3,7 +3,7 @@ FROM jorge07/alpine-php:7.1
 ARG USER=root
 ARG PASSWORD=root
 
-ARG COMPOSER_VERSION=1.3.2
+ARG COMPOSER_VERSION=1.5.5
 ARG XDEBUG_VERSION=2.5.1
 
 RUN apk add -U --no-cache \
