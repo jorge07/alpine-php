@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.7
 
 LABEL maintainer="Jorge Arco <jorge.arcoma@gmail.com>"
 
