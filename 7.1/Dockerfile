@@ -1,6 +1,6 @@
 FROM alpine:edge
 
-LABEL maintainer "Jorge Arco <jorge.arcoma@gmail.com>"
+LABEL maintainer="Jorge Arco <jorge.arcoma@gmail.com>"
 
 RUN echo "@edge-main http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
     && echo "@edge-community http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \

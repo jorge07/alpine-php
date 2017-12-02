@@ -1,6 +1,6 @@
 FROM alpine:3.5
 
-LABEL maintainer "Jorge Arco <jorge.arcoma@gmail.com>"
+LABEL maintainer="Jorge Arco <jorge.arcoma@gmail.com>"
 
 ADD https://php.codecasts.rocks/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
 
