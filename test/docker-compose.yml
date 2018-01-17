@@ -13,4 +13,4 @@ services:
     expose:
       - 9000
     volumes:
-      - "$PWD/test:/app"
+      - ".:/app"
