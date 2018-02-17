@@ -43,6 +43,7 @@ RUN apk --update add ca-certificates \
     php7-dom@cast \
     php7-redis@cast \
     php7-fpm@cast \
+    php7-sodium@cast \
     php7-tokenizer@cast \
 
     && ln -s /usr/bin/php7 /usr/bin/php \
