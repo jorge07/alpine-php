@@ -1,4 +1,0 @@
-FROM jorge07/alpine-php:7-dev-sf
-
-RUN echo "@edge-community http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
-    && apk add --update yarn@edge-community

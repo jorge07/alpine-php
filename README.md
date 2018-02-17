@@ -4,8 +4,7 @@
 |--------------|-----------|
 | 7.1-dev-sf   | 7.1-dev   |
 | 7.1-front-sf | 7.1-front |
-| 7-dev-sf     | 7-dev     |
-| 7-front-sf   | 7-front   |
+| 7.2-dev-sf   | 7.2-dev   |
 | 5.6-dev-sf   | 5.6       |
 
 ### Aliases
