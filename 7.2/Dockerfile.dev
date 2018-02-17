@@ -3,8 +3,7 @@ FROM jorge07/alpine-php:7.2
 ARG USER=root
 ARG PASSWORD=root
 
-ARG COMPOSER_VERSION=1.5.5
-ARG XDEBUG_VERSION=2.5.1
+ARG COMPOSER_VERSION=1.6.3
 
 RUN apk add -U --no-cache \
         php7-pear@cast \
@@ -16,7 +15,7 @@ RUN apk add -U --no-cache \
         wget \
         apache-ant \
         zip \
-#        php7-xdebug@cast \ Not compatible yet
+        php7-xdebug@cast \
 
     && rm -rf /var/cache/apk/* \
 
