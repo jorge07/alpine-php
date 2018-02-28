@@ -13,7 +13,7 @@ RUN apk add -U --no-cache \
         git \
         curl \
         wget \
-        apache-ant \
+        make \
         zip \
         php7-xdebug@cast \
 
