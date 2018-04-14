@@ -16,7 +16,6 @@ RUN apk --update add ca-certificates \
     php7-common@cast \
     php7-apcu@cast \
     php7-bcmath@cast \
-    php7-xmlwriter@cast \
     php7-ctype@cast \
     php7-curl@cast \
     php7-exif@cast \
@@ -35,8 +34,6 @@ RUN apk --update add ca-certificates \
     php7-posix@cast \
     php7-session@cast \
     php7-xml@cast \
-    php7-simplexml@cast \
-    php7-mcrypt@cast \
     php7-xsl@cast \
     php7-zip@cast \
     php7-zlib@cast \
@@ -44,7 +41,6 @@ RUN apk --update add ca-certificates \
     php7-redis@cast \
     php7-fpm@cast \
     php7-sodium@cast \
-    php7-tokenizer@cast \
 
     && ln -s /usr/bin/php7 /usr/bin/php \
     && rm -rf /var/cache/apk/*
