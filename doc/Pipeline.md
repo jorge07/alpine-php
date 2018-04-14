@@ -2,7 +2,7 @@
 
 This pipeline its just an example, for a more accurate approach see [here](https://github.com/jorge07/ddd-playground)
 
-### Using Milti stage build
+### Using Multi stage build
 
 **Dockerfile.build**
 
