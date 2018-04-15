@@ -7,8 +7,8 @@ umask 022
 
 alias xon='mv /tmp/xdebug.ini /etc/php/conf.d/'
 alias xoff='mv /etc/php/conf.d/xdebug.ini /tmp'
-alias opcon='mv /tmp/opcache.ini /etc/php7/conf.d/'
-alias opcoff='mv /etc/php7/conf.d/opcache.ini /tmp'
+alias opcon='mv /tmp/opcache.ini /etc/php/conf.d/'
+alias opcoff='mv /etc/php/conf.d/opcache.ini /tmp'
 
 alias profile='XDEBUG_CONFIG="profiler_enable=1 xdebug.profiler_output_name=profiler.out.%p profiler_output_dir=." php'
 
