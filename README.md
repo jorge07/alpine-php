@@ -5,8 +5,6 @@ Minimal PHP Docker images based on Alpine. Contains **tags** for development env
 
 > PHP 7.0.X is deprecated. Tags will still available but not receive any update
 
-[![nodesource/node](http://dockeri.co/image/jorge07/alpine-php)](https://registry.hub.docker.com/u/jorge07/alpine-php/)
-
 ## Documentation
 
 [Read about Documentation and see some examples here](https://github.com/jorge07/alpine-php/tree/master/doc/README.md)
