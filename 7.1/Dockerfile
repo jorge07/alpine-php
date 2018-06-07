@@ -24,6 +24,8 @@ RUN apk add -U \
     php7-mysqlnd \
     php7-pdo_mysql \
     php7-pdo_pgsql \
+    php7-pdo_sqlite \
+    php7-gd \
     php7-phar \
     php7-posix \
     php7-session \
