@@ -1,8 +1,9 @@
-FROM alpine:3.7
+FROM alpine:3.8
 
 LABEL maintainer="Jorge Arco <jorge.arcoma@gmail.com>"
 
 RUN apk add -U \
+	# Packages
     tini \
     php7 \
     php7-dev \
@@ -39,7 +40,7 @@ RUN apk add -U \
     php7-redis \
     php7-fpm \
     php7-tokenizer \
-
+	# Clean up
     && rm -rf /var/cache/apk/*
 
 COPY rootfs /

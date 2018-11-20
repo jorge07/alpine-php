@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM alpine:3.8
 
 LABEL maintainer="Jorge Arco <jorge.arcoma@gmail.com>"
 
@@ -7,41 +7,41 @@ ADD https://php.codecasts.rocks/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.
 RUN apk --update add ca-certificates \
     && echo "@edge-main http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
     && echo "@edge-community http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
-    && echo "@cast https://php.codecasts.rocks/v3.7/php-7.2" >> /etc/apk/repositories \
+    && echo "@cast https://php.codecasts.rocks/v3.8/php-7.2" >> /etc/apk/repositories \
     && apk add -U \
-
+    # Packages
     tini \
-    php7@cast \
-    php7-dev@cast \
-    php7-common@cast \
-    php7-apcu@cast \
-    php7-bcmath@cast \
-    php7-ctype@cast \
-    php7-curl@cast \
-    php7-exif@cast \
-    php7-iconv@cast \
-    php7-intl@cast \
-    php7-json@cast \
-    php7-mbstring@cast \
-    php7-opcache@cast \
-    php7-openssl@cast \
-    php7-pcntl@cast \
-    php7-pdo@cast \
-    php7-mysqlnd@cast \
-    php7-pdo_mysql@cast \
-    php7-pdo_pgsql@cast \
-    php7-phar@cast \
-    php7-posix@cast \
-    php7-session@cast \
-    php7-xml@cast \
-    php7-xsl@cast \
-    php7-zip@cast \
-    php7-zlib@cast \
-    php7-dom@cast \
-    php7-redis@cast \
-    php7-fpm@cast \
-    php7-sodium@cast \
-
+    php@cast \
+    php-dev@cast \
+    php-common@cast \
+    php-apcu@cast \
+    php-bcmath@cast \
+    php-ctype@cast \
+    php-curl@cast \
+    php-exif@cast \
+    php-iconv@cast \
+    php-intl@cast \
+    php-json@cast \
+    php-mbstring@cast \
+    php-opcache@cast \
+    php-openssl@cast \
+    php-pcntl@cast \
+    php-pdo@cast \
+    php-mysqlnd@cast \
+    php-pdo_mysql@cast \
+    php-pdo_pgsql@cast \
+    php-phar@cast \
+    php-posix@cast \
+    php-session@cast \
+    php-xml@cast \
+    php-xsl@cast \
+    php-zip@cast \
+    php-zlib@cast \
+    php-dom@cast \
+    php-redis@cast \
+    php-fpm@cast \
+    php-sodium@cast \
+	# Clean up
     && ln -s /usr/bin/php7 /usr/bin/php \
     && rm -rf /var/cache/apk/*
 
