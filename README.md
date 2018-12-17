@@ -1,12 +1,8 @@
 # Alpine PHP 
-[![Build Status](https://travis-ci.org/jorge07/alpine-php.svg?branch=master)](https://travis-ci.org/jorge07/alpine-php) 
-![Docker Pulls](https://img.shields.io/docker/pulls/jorge07/alpine-php.svg?style=flat-square)
 
-
+[![Build Status](https://travis-ci.org/jorge07/alpine-php.svg?branch=master)](https://travis-ci.org/jorge07/alpine-php) ![Docker Pulls](https://img.shields.io/docker/pulls/jorge07/alpine-php.svg?style=flat-square)
 
 Minimal PHP Docker images based on Alpine. Contains **tags** for development environments and adapted for various frameworks like [Symfony](http://symfony.com/) and [Wordpress](https://github.com/WordPress/WordPress).
-
-> PHP 7.0.X is deprecated. Tags will still available but not receive any update
 
 ## Documentation
 
@@ -14,9 +10,18 @@ Minimal PHP Docker images based on Alpine. Contains **tags** for development env
 
 ## Images
 
+- [7.3](https://github.com/jorge07/alpine-php/blob/master/7.3/Dockerfile)
 - [7.2](https://github.com/jorge07/alpine-php/blob/master/7.2/Dockerfile)
 - [7.1](https://github.com/jorge07/alpine-php/blob/master/7.1/Dockerfile)
 - [5.6](https://github.com/jorge07/alpine-php/blob/master/5.6/Dockerfile)
+
+## Usage:
+
+```sh
+docker run -d --name dev -p 9000:9000 -p 2323:22 -v $PWD:/app jorge07/alpine-php:7.3-dev
+```
+
+> SSH is only for IDE integration to use container as remote interpreter 
 
 ## Dev Dockerfiles
 
@@ -24,17 +29,10 @@ Dev images extend the standard ones and add some tools for development and CI li
 
 | General purpose     | Symfony     | Wordpress                                                                   
 |---------------------|-------------|-------------------
+| [7.3-dev](https://github.com/jorge07/alpine-php/blob/master/7.3/Dockerfile.dev), [7.2-front](https://github.com/jorge07/alpine-php/blob/master/7.3/Dockerfile.front) |  | 
 | [7.2-dev](https://github.com/jorge07/alpine-php/blob/master/7.2/Dockerfile.dev), [7.2-front](https://github.com/jorge07/alpine-php/blob/master/7.2/Dockerfile.front) | [7.2-dev-sf](https://github.com/jorge07/alpine-php/blob/symfony/7.2/Dockerfile.dev), [7.2-front-sf](https://github.com/jorge07/alpine-php/blob/symfony/7.2/Dockerfile.front) | [7.2-dev-wp](https://github.com/jorge07/alpine-php/blob/wordpress/7.2/Dockerfile.dev)
 | [7.1-dev](https://github.com/jorge07/alpine-php/blob/master/7.1/Dockerfile.dev), [7.1-front](https://github.com/jorge07/alpine-php/blob/master/7.1/Dockerfile.front) | [7.1-dev-sf](https://github.com/jorge07/alpine-php/blob/symfony/7.1/Dockerfile.dev), [7.1-front-sf](https://github.com/jorge07/alpine-php/blob/symfony/7.1/Dockerfile.front) | [7.1-dev-wp](https://github.com/jorge07/alpine-php/blob/wordpress/7.1/Dockerfile.dev)
 | [5.6-dev](https://github.com/jorge07/alpine-php/blob/master/5.6/Dockerfile.dev) | [5.6-dev-sf](https://github.com/jorge07/alpine-php/blob/symfony/5.6/Dockerfile.dev) | [5.6-dev-wp](https://github.com/jorge07/alpine-php/blob/wordpress/5.6/Dockerfile.dev)
-
-## Usage:
-
-```sh
-docker run -d --name dev -p 9000:9000 -p 2323:22 -v $PWD:/app jorge07/alpine-php:7.2-dev
-```
-
-> SSH is only for IDE integration to use container as remote interpreter 
 
 ## Content table
 
