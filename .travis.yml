@@ -14,6 +14,10 @@ before_install:
 
   - docker version
 
+  - docker build --no-cache -t jorge07/alpine-php:7.3 -f 7.3/Dockerfile 7.3/
+  - docker build --no-cache -t jorge07/alpine-php:7.3-dev -f 7.3/Dockerfile.dev 7.3/
+  - docker build --no-cache -t jorge07/alpine-php:7.3-front -f 7.3/Dockerfile.front 7.3/
+
   - docker build --no-cache -t jorge07/alpine-php:7.2 -f 7.2/Dockerfile 7.2/
   - docker build --no-cache -t jorge07/alpine-php:7.2-dev -f 7.2/Dockerfile.dev 7.2/
   - docker build --no-cache -t jorge07/alpine-php:7.2-front -f 7.2/Dockerfile.front 7.2/
@@ -24,6 +28,10 @@ before_install:
 
   - docker build --no-cache -t jorge07/alpine-php:5.6 -f 5.6/Dockerfile 5.6/
   - docker build --no-cache -t jorge07/alpine-php:5.6-dev -f 5.6/Dockerfile.dev 5.6/
+
+  - docker run --name php7.3 -d -v $PWD:/app jorge07/alpine-php:7.3
+  - docker run --name php7.3-dev -d -v $PWD:/app jorge07/alpine-php:7.3-dev
+  - docker run --name php7.3-front -d -v $PWD:/app jorge07/alpine-php:7.3-front
 
   - docker run --name php7.2 -d -v $PWD:/app jorge07/alpine-php:7.2
   - docker run --name php7.2-dev -d -v $PWD:/app jorge07/alpine-php:7.2-dev
@@ -39,6 +47,11 @@ before_install:
   - docker-compose -f test/docker-compose.yml up -d
 
 script:
+  - docker exec php7.3 php -v
+  - docker exec php7.3 sh -c "php -v | grep OPcache"
+  - docker exec php7.3 sh -c "php test/test.php | grep Iyo"
+  - docker exec php7.3 sh -c "echo \"<?php echo ini_get('memory_limit');\" | php | grep 256M"
+
   - docker exec php7.2 php -v
   - docker exec php7.2 sh -c "php -v | grep OPcache"
   - docker exec php7.2 sh -c "php test/test.php | grep Iyo"
@@ -48,6 +61,11 @@ script:
   - docker exec php7.2-dev composer --version
   - docker exec php7.2-dev sh -c "php test/test.php | grep Iyo"
   - docker exec php7.2-dev sh -c "echo \"<?php echo ini_get('memory_limit');\" | php | grep 1G"
+
+  - docker exec php7.3-dev sh -c "php -v | grep Xdebug"
+  - docker exec php7.3-dev composer --version
+  - docker exec php7.3-dev sh -c "php test/test.php | grep Iyo"
+  - docker exec php7.3-dev sh -c "echo \"<?php echo ini_get('memory_limit');\" | php | grep 1G"
 
   - docker exec php7.1 php -v
   - docker exec php7.1 sh -c "php -v | grep OPcache"
