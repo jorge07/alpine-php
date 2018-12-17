@@ -15,7 +15,7 @@ RUN apk add -U --no-cache \
         wget \
         make \
         zip \
-        php7-xdebug@cast \
+        php-xdebug@cast \
 
     && rm -rf /var/cache/apk/* \
 
@@ -24,11 +24,7 @@ RUN apk add -U --no-cache \
     && ssh-keygen -A \
 
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer --version=${COMPOSER_VERSION} \
-    && composer global require "hirak/prestissimo:0.3.7" \
-
-    && wget https://git.io/psysh \
-    && chmod +x psysh \
-    && mv psysh /usr/bin/psysh
+    && composer global require "hirak/prestissimo:0.3.7"
 
 ADD devfs /
 
