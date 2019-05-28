@@ -6,7 +6,7 @@ ARG PASSWORD=root
 ARG COMPOSER_VERSION=1.6.3
 
 RUN apk add -U --no-cache \
-        php7-pear@cast \
+        php7-pear \
         openssh \
         supervisor \
         autoconf \
@@ -15,7 +15,7 @@ RUN apk add -U --no-cache \
         wget \
         make \
         zip \
-        php-xdebug@cast \
+        php-xdebug \
 
     && rm -rf /var/cache/apk/* \
 
