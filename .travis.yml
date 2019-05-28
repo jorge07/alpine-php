@@ -54,7 +54,7 @@ script:
   - docker exec php7.3 sh -c "echo \"<?php echo ini_get('memory_limit');\" | php | grep 256M"
 
   - docker exec php7.2 php -v
-  - docker exec php7.3 sh -c "php -v | grep 7.2"
+  - docker exec php7.2 sh -c "php -v | grep 7.2"
   - docker exec php7.2 sh -c "php -v | grep OPcache"
   - docker exec php7.2 sh -c "php test/test.php | grep Iyo"
   - docker exec php7.2 sh -c "echo \"<?php echo ini_get('memory_limit');\" | php | grep 256M"
@@ -70,7 +70,7 @@ script:
   - docker exec php7.3-dev sh -c "echo \"<?php echo ini_get('memory_limit');\" | php | grep 1G"
 
   - docker exec php7.1 php -v
-  - docker exec php7.3 sh -c "php -v | grep 7.1"
+  - docker exec php7.1 sh -c "php -v | grep 7.1"
   - docker exec php7.1 sh -c "php -v | grep OPcache"
   - docker exec php7.1 sh -c "php test/test.php | grep Iyo"
   - docker exec php7.1 sh -c "echo \"<?php echo ini_get('memory_limit');\" | php | grep 256M"
