@@ -2,12 +2,12 @@ FROM alpine:3.8
 
 LABEL maintainer="Jorge Arco <jorge.arcoma@gmail.com>"
 
-ADD https://php.codecasts.rocks/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
+ADD https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
 
 RUN apk --update add ca-certificates \
     && echo "@edge-main http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
     && echo "@edge-community http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
-    && echo "@cast https://php.codecasts.rocks/v3.8/php-7.2" >> /etc/apk/repositories \
+    && echo "@cast https://dl.bintray.com/php-alpine/v3.8/php-7.2" >> /etc/apk/repositories \
     && apk add -U \
     # Packages
     tini \
@@ -41,7 +41,7 @@ RUN apk --update add ca-certificates \
     php-redis@cast \
     php-fpm@cast \
     php-sodium@cast \
-	# Clean up
+    # Clean up
     && ln -s /usr/bin/php7 /usr/bin/php \
     && rm -rf /var/cache/apk/*
 
