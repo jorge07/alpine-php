@@ -39,6 +39,7 @@ RUN apk --update add ca-certificates \
     php7-sodium \
     php7-tokenizer \
     php7-xmlwriter \
+    php7-simplexml \
 	# Clean up
     && rm -rf /var/cache/apk/*
 
