@@ -15,7 +15,7 @@ RUN apk add -U --no-cache \
         wget \
         make \
         zip \
-        php7-xdebug \
+        php7-xdebug@cast \
 
     && rm -rf /var/cache/apk/* \
 
