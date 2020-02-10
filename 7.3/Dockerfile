@@ -7,7 +7,6 @@ ADD https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub /etc/apk/keys/php-a
 
 RUN apk --update add ca-certificates \
     && echo "@cast https://dl.bintray.com/php-alpine/v3.9/php-7.3" >> /etc/apk/repositories \
-    && echo "@cast https://dl.bintray.com/php-alpine/v3.9/php-7.3" >> /etc/apk/repositories \
     && apk add -U \
     # Packages
     tini \
