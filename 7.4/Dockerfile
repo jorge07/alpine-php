@@ -42,9 +42,14 @@ RUN apk --update add ca-certificates \
     php7-redis@cast \
     php7-fpm@cast \
     php7-sodium@cast \
+    # Iconv Fix
+    && apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted gnu-libiconv \
 	# Clean up
     && ln -s /usr/bin/php7 /usr/bin/php \
     && rm -rf /var/cache/apk/*
+
+# iconv hack https://github.com/docker-library/php/issues/240
+ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
 
 ADD rootfs /
 
