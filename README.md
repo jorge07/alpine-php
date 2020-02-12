@@ -10,7 +10,7 @@ Minimal PHP Docker images based on Alpine. Contains **tags** for development env
 
 ## Images
 
-- [7.4](https://github.com/jorge07/alpine-php/blob/master/7.3/Dockerfile)
+- [7.4](https://github.com/jorge07/alpine-php/blob/master/7.4/Dockerfile)
 - [7.3](https://github.com/jorge07/alpine-php/blob/master/7.3/Dockerfile)
 - [7.2](https://github.com/jorge07/alpine-php/blob/master/7.2/Dockerfile)
 - [7.1](https://github.com/jorge07/alpine-php/blob/master/7.1/Dockerfile)
