@@ -1,0 +1,42 @@
+name: PR checks
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  pr:
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [ 5.6, 7.1, 7.2, 7.3, 7.4 ]
+
+    name: ${{ matrix.version }}
+    runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ matrix.version }}
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build
+      run: |
+         docker build -t jorge07/alpine-php:${VERSION} -f ${VERSION}/Dockerfile ${VERSION}/
+         docker build -t jorge07/alpine-php:${VERSION}-dev -f ${VERSION}/Dockerfile.dev ${VERSION}/
+
+    - name: Run
+      run: |
+        docker run --name php${VERSION} -d -v $PWD:/app jorge07/alpine-php:${VERSION}
+        docker run --name php${VERSION}-dev -d -v $PWD:/app jorge07/alpine-php:${VERSION}-dev
+    - name: Test Main
+      run: |
+        docker run --rm -v $PWD:/app jorge07/alpine-php:${VERSION} php -v
+        docker run --rm -v $PWD:/app jorge07/alpine-php:${VERSION} sh -c "php -v | grep ${VERSION}"
+        docker run --rm -v $PWD:/app jorge07/alpine-php:${VERSION} sh -c "php -v | grep OPcache"
+        docker run --rm -v $PWD:/app jorge07/alpine-php:${VERSION} sh -c "php test/test.php | grep Iyo"
+        docker run --rm -v $PWD:/app jorge07/alpine-php:${VERSION} sh -c "echo \"<?php echo ini_get('memory_limit');\" | php | grep 256M"
+    - name: Test Dev
+      run: |
+        docker run --rm -v $PWD:/app jorge07/alpine-php:${VERSION}-dev sh -c "php -v | grep Xdebug"
+        docker run --rm -v $PWD:/app jorge07/alpine-php:${VERSION}-dev composer --version
+        docker run --rm -v $PWD:/app jorge07/alpine-php:${VERSION}-dev sh -c "php test/test.php | grep Iyo"
+        docker run --rm -v $PWD:/app jorge07/alpine-php:${VERSION}-dev sh -c "echo \"<?php echo ini_get('memory_limit');\" | php | grep 1G"
