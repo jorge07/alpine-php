@@ -8,6 +8,7 @@ RUN apk --update add ca-certificates \
     # Packages
     tini \
     php7 \
+    php7-amqp \
     php7-dev \
     php7-common \
     php7-apcu \
