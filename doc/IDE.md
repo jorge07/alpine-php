@@ -4,7 +4,7 @@
 
 Run this in your project root path: 
     
-    docker run -itd --name php7 -v $PWD:/app -p 2244:22 jorge07/alpine-php:7-dev
+    docker run -itd --name php7 -v $PWD:/app -p 2244:22 jorge07/alpine-php:7.4-dev
 
 - `-v $PWD:/app` will create a volume to share the host folder with the container
 - `-p 2244:22` will export the 22 container port to the 2244 host machine. This will allow us to connect the IDE via SSH.
