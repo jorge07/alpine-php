@@ -1,9 +1,8 @@
-FROM alpine:3.9
+FROM alpine:3.9 as main
 
 LABEL maintainer="Jorge Arco <jorge.arcoma@gmail.com>"
 
 ADD https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
-
 
 RUN apk --update add ca-certificates \
     && echo "@cast https://dl.bintray.com/php-alpine/v3.9/php-7.3" >> /etc/apk/repositories \
@@ -59,3 +58,40 @@ CMD ["/usr/sbin/php-fpm7", "-R", "--nodaemonize"]
 EXPOSE 9000
 
 WORKDIR /app
+
+FROM main as dev
+
+ARG USER=root
+ARG PASSWORD=root
+
+ARG COMPOSER_VERSION=1.9.3
+
+RUN apk add -U --no-cache \
+        php7-pear \
+        openssh \
+        supervisor \
+        autoconf \
+        git \
+        curl \
+        wget \
+        make \
+        zip \
+        php7-xdebug@cast \
+
+    && rm -rf /var/cache/apk/* \
+
+    && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config \
+    && echo "${USER}:${PASSWORD}" | chpasswd \
+    && ssh-keygen -A \
+
+    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer --version=${COMPOSER_VERSION} \
+    && composer global require "hirak/prestissimo:0.3.10"
+
+ADD devfs /
+
+RUN HOST_IP="$(/sbin/ip route|awk '/default/ { print $3 }')" \
+    && sed -i "$ a\xdebug.remote_host=${HOST_IP}" /etc/php7/conf.d/00_xdebug.ini
+
+CMD ["supervisord", "--nodaemon", "--configuration", "/etc/supervisor/conf.d/supervisord.conf"]
+
+EXPOSE 22 9000
