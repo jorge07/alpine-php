@@ -1,3 +1,0 @@
-FROM jorge07/alpine-php:7.1-dev
-
-RUN apk add --update yarn
