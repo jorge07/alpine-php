@@ -58,7 +58,7 @@ FROM main as dev
 ARG USER=root
 ARG PASSWORD=root
 
-ARG COMPOSER_VERSION=1.9.3
+ARG COMPOSER_VERSION=1.10.1
 
 RUN apk add -U --no-cache \
         php7-pear \
