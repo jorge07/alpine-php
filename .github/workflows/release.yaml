@@ -1,25 +1,24 @@
-name: Releas
+name: Release
 
 on:
   push:
     branches:
       - master
 jobs:
-  release:
+  push-to-registry:
     strategy:
       fail-fast: true
       matrix:
         version: [ 7.1, 7.2, 7.3, 7.4 ]
+    env:
+      VERSION: ${{ matrix.version }}
     name: release-${{ matrix.version }}
     runs-on: ubuntu-latest
-    needs: pr
     steps:
     - uses: actions/checkout@v1
     - uses: azure/docker-login@v1
       with:
-        login-server: docker.io
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
-    - name: Build
-      run: |
+    - run: |
          make release
