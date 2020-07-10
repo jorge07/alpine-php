@@ -15,6 +15,8 @@ RUN apk --update add ca-certificates \
     php7-ctype \
     php7-curl \
     php7-exif \
+    php7-fileinfo \
+    php7-gd \
     php7-iconv \
     php7-intl \
     php7-json \
@@ -28,6 +30,7 @@ RUN apk --update add ca-certificates \
     php7-pdo_pgsql \
     php7-phar \
     php7-posix \
+    php7-soap \
     php7-session \
     php7-xml \
     php7-xsl \
