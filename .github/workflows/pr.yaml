@@ -27,6 +27,3 @@ jobs:
     - name: Test Main
       run: |
         make test-main
-    - name: Test Dev
-      run: |
-        make test-main
