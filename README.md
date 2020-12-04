@@ -12,6 +12,7 @@ Minimal PHP Docker images based on Alpine. Contains **tags** for development env
 
 ## Images
 
+- [8.0](https://github.com/jorge07/alpine-php/blob/master/8.0/Dockerfile)
 - [7.4](https://github.com/jorge07/alpine-php/blob/master/7.4/Dockerfile)
 - [7.3](https://github.com/jorge07/alpine-php/blob/master/7.3/Dockerfile)
 - [7.2](https://github.com/jorge07/alpine-php/blob/master/7.2/Dockerfile)
@@ -21,7 +22,7 @@ Minimal PHP Docker images based on Alpine. Contains **tags** for development env
 ## Usage:
 
 ```sh
-docker run -d --name dev -p 9000:9000 -p 2323:22 -v $PWD:/app jorge07/alpine-php:7.3-dev
+docker run -d --name dev -p 9000:9000 -p 2323:22 -v $PWD:/app jorge07/alpine-php:8.0-dev
 ```
 
 > SSH is only for IDE integration to use container as remote interpreter 
@@ -32,6 +33,7 @@ Dev images extend the standard ones and add some tools for development and CI li
 
 | General purpose     | Symfony     | Wordpress                                                                   
 |---------------------|-------------|-------------------
+| [8.0-dev](https://github.com/jorge07/alpine-php/blob/master/8.0/Dockerfile)|  | 
 | [7.4-dev](https://github.com/jorge07/alpine-php/blob/master/7.4/Dockerfile)|  | 
 | [7.3-dev](https://github.com/jorge07/alpine-php/blob/master/7.3/Dockerfile) |  | 
 | [7.2-dev](https://github.com/jorge07/alpine-php/blob/master/7.2/Dockerfile), | [7.2-dev-sf](https://github.com/jorge07/alpine-php/blob/symfony/7.2/Dockerfile.dev), [7.2-front-sf](https://github.com/jorge07/alpine-php/blob/symfony/7.2/Dockerfile.front) | [7.2-dev-wp](https://github.com/jorge07/alpine-php/blob/wordpress/7.2/Dockerfile.dev)
@@ -42,8 +44,10 @@ Dev images extend the standard ones and add some tools for development and CI li
 
 |    Tag     | Parent     |        Content                                                                    | Image Layers
 |------------|------------|-----------------------------------------------------------------------------------|---------
+| 8.0        |   alpine   | tini, php7.4-cli & fpm                                                            | [![](https://images.microbadger.com/badges/image/jorge07/alpine-php:8.0.svg)](https://microbadger.com/images/jorge07/alpine-php:8.0 "Get your own image badge on microbadger.com")
+| 8.0-dev    |    8.0     | + SSH server, xdebug, composer                                               | [![](https://images.microbadger.com/badges/image/jorge07/alpine-php:8.0-dev.svg)](https://microbadger.com/images/jorge07/alpine-php:8.0-dev "Get your own image badge on microbadger.com")
 | 7.4        |   alpine   | tini, php7.4-cli & fpm                                                            | [![](https://images.microbadger.com/badges/image/jorge07/alpine-php:7.4.svg)](https://microbadger.com/images/jorge07/alpine-php:7.4 "Get your own image badge on microbadger.com")
-| 7.4-dev    |    7.4     | + SSH server, xdebug, ant, composer                                               | [![](https://images.microbadger.com/badges/image/jorge07/alpine-php:7.4-dev.svg)](https://microbadger.com/images/jorge07/alpine-php:7.4-dev "Get your own image badge on microbadger.com")
+| 7.4-dev    |    7.4     | + SSH server, xdebug, composer                                               | [![](https://images.microbadger.com/badges/image/jorge07/alpine-php:7.4-dev.svg)](https://microbadger.com/images/jorge07/alpine-php:7.4-dev "Get your own image badge on microbadger.com")
 | 7.3        |   alpine   | tini, php7.3-cli & fpm                                                            | [![](https://images.microbadger.com/badges/image/jorge07/alpine-php:7.3.svg)](https://microbadger.com/images/jorge07/alpine-php:7.3 "Get your own image badge on microbadger.com")
 | 7.3-dev    |    7.3     | + SSH server, xdebug, ant, composer                                               | [![](https://images.microbadger.com/badges/image/jorge07/alpine-php:7.3-dev.svg)](https://microbadger.com/images/jorge07/alpine-php:7.3-dev "Get your own image badge on microbadger.com")
 | 7.2        |   alpine   | tini, php7.2-cli & fpm                                                            | [![](https://images.microbadger.com/badges/image/jorge07/alpine-php:7.2.svg)](https://microbadger.com/images/jorge07/alpine-php:7.2 "Get your own image badge on microbadger.com")
