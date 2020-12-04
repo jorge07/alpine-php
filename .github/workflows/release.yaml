@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        version: [ 7.1, 7.2, 7.3, 7.4, 8.0 ]
+        version: ["7.1", "7.2", "7.3", "7.4", "8.0" ]
     env:
       VERSION: ${{ matrix.version }}
     name: release-${{ matrix.version }}
