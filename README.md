@@ -25,8 +25,11 @@ Minimal PHP Docker images based on Alpine. Contains **tags** for development env
 ## Usage:
 
 ```sh
-docker run -d --name dev -p 9000:9000 -p 2323:22 -v $PWD:/app jorge07/alpine-php:8.0-dev
+docker run -d --name dev -p 2323:22 -v $PWD:/app jorge07/alpine-php:8.0-dev
 ```
+
+> To make xdebug config easier for all environments there's a custom ENVVAR you can define: `XDEBUG_CLIENT_HOST`. 
+> Example: XDEBUG_CLIENT_HOST=docker.for.mac for OSX, XDEBUG_CLIENT_HOST=docker.for.windows for Windows users and Linux users and Remote interpreters by SSH can leave it empty.
 
 > SSH is only for IDE integration to use container as remote interpreter 
 
