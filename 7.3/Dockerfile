@@ -1,11 +1,11 @@
-FROM alpine:3.9 as main
+FROM alpine:3.11 as main
 
 LABEL maintainer="Jorge Arco <jorge.arcoma@gmail.com>"
 
-ADD https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
+ADD https://packages.whatwedo.ch/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
 
 RUN apk --update add ca-certificates \
-    && echo "@cast https://dl.bintray.com/php-alpine/v3.9/php-7.3" >> /etc/apk/repositories \
+    && echo "@cast https://packages.whatwedo.ch/php-alpine/v3.11/php-7.3" >> /etc/apk/repositories \
     && apk add -U \
     # Packages
     tini \
