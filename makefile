@@ -30,3 +30,19 @@ release: build
 	docker push ${REPO}:${SEMVER}
 	docker push ${REPO}:${VERSION}-dev
 	docker push ${REPO}:${SEMVER}-dev
+test-all: test-all
+	VERSION=8.0 make build
+	VERSION=7.4 make build
+	VERSION=7.3 make build
+	VERSION=7.2 make build
+	VERSION=7.1 make build
+	VERSION=8.0 make test-main
+	VERSION=7.4 make test-main
+	VERSION=7.3 make test-main
+	VERSION=7.2 make test-main
+	VERSION=7.1 make test-main
+	VERSION=8.0 make test-dev
+	VERSION=7.4 make test-dev
+	VERSION=7.3 make test-dev
+	VERSION=7.2 make test-dev
+	VERSION=7.1 make test-dev
