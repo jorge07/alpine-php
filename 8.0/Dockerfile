@@ -1,44 +1,38 @@
-FROM alpine:3.12 as main
+FROM alpine:3.14 as main
 
 LABEL maintainer="Jorge Arco <jorge.arcoma@gmail.com>"
 
-ADD https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
-
-RUN apk --update add ca-certificates \
-    && echo "https://dl.bintray.com/php-alpine/v3.12/php-8.0" >> /etc/apk/repositories \
-    && apk add -U \
+RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted gnu-libiconv \
+    && apk add -U --no-cache \
     # Packages
     tini \
-    php8@cast \
-    php8-dev@cast \
-    php8-common@cast \
-    php8-apcu@cast \
-    php8-gd@cast \
-    php8-xmlreader@cast \
-    php8-bcmath@cast \
-    php8-ctype@cast \
-    php8-curl@cast \
-    php8-exif@cast \
-    php8-iconv@cast \
-    php8-intl@cast \
-    php8-mbstring@cast \
-    php8-opcache@cast \
-    php8-openssl@cast \
-    php8-pcntl@cast \
-    php8-phar@cast \
-    php8-session@cast \
-    php8-xml@cast \
-    php8-xsl@cast \
-    php8-zip@cast \
-    php8-zlib@cast \
-    php8-dom@cast \
-    php8-fpm@cast \
-    php8-sodium@cast \
+    php8 \
+    php8-dev \
+    php8-common \
+    php8-gd \
+    php8-xmlreader \
+    php8-bcmath \
+    php8-ctype \
+    php8-curl \
+    php8-exif \
+    php8-iconv \
+    php8-intl \
+    php8-mbstring \
+    php8-opcache \
+    php8-openssl \
+    php8-pcntl \
+    php8-phar \
+    php8-session \
+    php8-xml \
+    php8-xsl \
+    php8-zip \
+    php8-zlib \
+    php8-dom \
+    php8-fpm \
+    php8-sodium \
     # Iconv Fix
-    && apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted gnu-libiconv \
-	# Clean up
-    && ln -s /usr/bin/php8 /usr/bin/php \
-    && rm -rf /var/cache/apk/*
+    && apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted php8-pecl-apcu \
+    && ln -s /usr/bin/php8 /usr/bin/php
 
 ADD rootfs /
 
@@ -67,7 +61,7 @@ RUN apk add -U --no-cache \
         wget \
         make \
         zip \
-        php8-xdebug@cast \
+        php8-xdebug \
     # Delete APK cache.
     && rm -rf /var/cache/apk/* \
     # Create ssh user for dev.
