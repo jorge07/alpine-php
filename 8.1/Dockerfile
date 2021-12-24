@@ -48,7 +48,7 @@ FROM main as dev
 ARG USER=root
 ARG PASSWORD=root
 
-ARG COMPOSER_VERSION=2.0.8
+ARG COMPOSER_VERSION=2.2.1
 
 RUN apk add -U --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/   \
         php81-pear \
