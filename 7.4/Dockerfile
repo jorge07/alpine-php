@@ -58,7 +58,7 @@ FROM main as dev
 ARG USER=root
 ARG PASSWORD=root
 
-ARG COMPOSER_VERSION=1.10.1
+ARG COMPOSER_VERSION=2.2.1
 
 RUN apk add -U --no-cache \
         php7-pear \
@@ -78,8 +78,7 @@ RUN apk add -U --no-cache \
     && echo "${USER}:${PASSWORD}" | chpasswd \
     && ssh-keygen -A \
     # Download composer.
-    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer --version=${COMPOSER_VERSION} \
-    && composer global require "hirak/prestissimo:0.3.10"
+    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer --version=${COMPOSER_VERSION}
 
 ADD devfs /
 
