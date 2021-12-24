@@ -1,0 +1,19 @@
+export CHARSET=UTF-8
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export PAGER=less
+export PS1='\h:\w\$ '
+
+umask 022
+
+alias xon='mv /tmp/00_xdebug.ini /etc/php8/conf.d/'
+alias xoff='mv /etc/php8/conf.d/00_xdebug.ini /tmp'
+alias opcon='mv /tmp/00_opcache.ini /etc/php8/conf.d/'
+alias opcoff='mv /etc/php8/conf.d/00_opcache.ini /tmp'
+
+alias profile='XDEBUG_CONFIG="profiler_enable=1 xdebug.profiler_output_name=profiler.out.%p profiler_output_dir=." php'
+
+for script in /etc/profile.d/*.sh ; do
+        if [ -r $script ] ; then
+                . $script
+        fi
+done
