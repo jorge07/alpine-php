@@ -15,6 +15,7 @@ Minimal PHP Docker images based on Alpine. Contains **tags** for development env
 
 ## Images
 
+- [8.1](https://github.com/jorge07/alpine-php/blob/master/8.1/Dockerfile)
 - [8.0](https://github.com/jorge07/alpine-php/blob/master/8.0/Dockerfile)
 - [7.4](https://github.com/jorge07/alpine-php/blob/master/7.4/Dockerfile)
 - [7.3](https://github.com/jorge07/alpine-php/blob/master/7.3/Dockerfile)
@@ -25,7 +26,7 @@ Minimal PHP Docker images based on Alpine. Contains **tags** for development env
 ## Usage:
 
 ```sh
-docker run -d --name dev -p 2323:22 -v $PWD:/app jorge07/alpine-php:8.0-dev
+docker run -d --name dev -p 2323:22 -v $PWD:/app jorge07/alpine-php:8.1-dev
 ```
 
 > To make xdebug config easier for all environments there's a custom ENVVAR you can define: `XDEBUG_CLIENT_HOST`. 
@@ -39,6 +40,7 @@ Dev images extend the standard ones and add some tools for development and CI li
 
 | General purpose     | Symfony     | Wordpress                                                                   
 |---------------------|-------------|-------------------
+| [8.1-dev](https://github.com/jorge07/alpine-php/blob/master/8.1/Dockerfile)|  | 
 | [8.0-dev](https://github.com/jorge07/alpine-php/blob/master/8.0/Dockerfile)|  | 
 | [7.4-dev](https://github.com/jorge07/alpine-php/blob/master/7.4/Dockerfile)|  | 
 | [7.3-dev](https://github.com/jorge07/alpine-php/blob/master/7.3/Dockerfile) |  | 
@@ -50,7 +52,9 @@ Dev images extend the standard ones and add some tools for development and CI li
 
 |    Tag     | Parent     |        Content                                                                    | Image Layers
 |------------|------------|-----------------------------------------------------------------------------------|---------
-| 8.0        |   alpine   | tini, php7.4-cli & fpm                                                            | [![](https://images.microbadger.com/badges/image/jorge07/alpine-php:8.0.svg)](https://microbadger.com/images/jorge07/alpine-php:8.0 "Get your own image badge on microbadger.com")
+| 8.1        |   alpine   | tini, php8.1cli & fpm                                                            | [![](https://images.microbadger.com/badges/image/jorge07/alpine-php:8.1.svg)](https://microbadger.com/images/jorge07/alpine-php:8.1 "Get your own image badge on microbadger.com")
+| 8.1-dev    |    8.1     | + SSH server, xdebug, composer                                               | [![](https://images.microbadger.com/badges/image/jorge07/alpine-php:8.1-dev.svg)](https://microbadger.com/images/jorge07/alpine-php:8.1-dev "Get your own image badge on microbadger.com")
+| 8.0        |   alpine   | tini, php8-cli & fpm                                                            | [![](https://images.microbadger.com/badges/image/jorge07/alpine-php:8.0.svg)](https://microbadger.com/images/jorge07/alpine-php:8.0 "Get your own image badge on microbadger.com")
 | 8.0-dev    |    8.0     | + SSH server, xdebug, composer                                               | [![](https://images.microbadger.com/badges/image/jorge07/alpine-php:8.0-dev.svg)](https://microbadger.com/images/jorge07/alpine-php:8.0-dev "Get your own image badge on microbadger.com")
 | 7.4        |   alpine   | tini, php7.4-cli & fpm                                                            | [![](https://images.microbadger.com/badges/image/jorge07/alpine-php:7.4.svg)](https://microbadger.com/images/jorge07/alpine-php:7.4 "Get your own image badge on microbadger.com")
 | 7.4-dev    |    7.4     | + SSH server, xdebug, composer                                               | [![](https://images.microbadger.com/badges/image/jorge07/alpine-php:7.4-dev.svg)](https://microbadger.com/images/jorge07/alpine-php:7.4-dev "Get your own image badge on microbadger.com")
