@@ -1,4 +1,4 @@
-FROM alpine:3.7 as main
+FROM --platform=$BUILDPLATFORM alpine:3.7 as main
 
 LABEL maintainer="Jorge Arco <jorge.arcoma@gmail.com>"
 
@@ -54,7 +54,7 @@ EXPOSE 9000
 
 WORKDIR /app
 
-FROM main as dev
+FROM --platform=$BUILDPLATFORM main as dev
 
 ARG USER=root
 ARG PASSWORD=root
