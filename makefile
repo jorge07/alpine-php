@@ -1,9 +1,11 @@
 REPO:=jorge07/alpine-php
 DOCKER_RUN:=docker run --rm -v $(PWD):/app ${REPO}:${VERSION}
 DOCKER_RUN_DEV:=$(DOCKER_RUN)-dev
+ARCHS:=linux/arm/v7,linux/arm64/v8,linux/amd64
+PUSH:=
 build:
-	docker build -t $(REPO):${VERSION} --target main -f ${VERSION}/Dockerfile ${VERSION}/
-	docker build -t $(REPO):${VERSION}-dev --target dev -f ${VERSION}/Dockerfile ${VERSION}/
+	docker buildx build --platform $(ARCHS) $(PUSH) -t $(REPO):${VERSION} --target main -f ${VERSION}/Dockerfile ${VERSION}/
+	docker buildx build --platform $(ARCHS) $(PUSH) -t $(REPO):${VERSION}-dev --target dev -f ${VERSION}/Dockerfile ${VERSION}/
 run-detached:
 	docker run --name php${VERSION} -d -v $(PWD):/app $(REPO):${VERSION}
 	docker run --name php${VERSION}-dev -d -v $(PWD):/app $(REPO):${VERSION}-dev
@@ -31,16 +33,19 @@ release: build
 	docker push ${REPO}:${VERSION}-dev
 	docker push ${REPO}:${SEMVER}-dev
 test-all: test-all
+	VERSION=8.1 make build
 	VERSION=8.0 make build
 	VERSION=7.4 make build
 	VERSION=7.3 make build
 	VERSION=7.2 make build
 	VERSION=7.1 make build
+	VERSION=8.1 make test-main
 	VERSION=8.0 make test-main
 	VERSION=7.4 make test-main
 	VERSION=7.3 make test-main
 	VERSION=7.2 make test-main
 	VERSION=7.1 make test-main
+	VERSION=8.1 make test-dev
 	VERSION=8.0 make test-dev
 	VERSION=7.4 make test-dev
 	VERSION=7.3 make test-dev

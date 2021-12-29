@@ -20,6 +20,8 @@ jobs:
     - uses: actions/checkout@v1
     - name: Build
       run: |
+         docker buildx create --name alpine-php
+         docker buildx use alpine-php
          make build
     - name: Run
       run: |
