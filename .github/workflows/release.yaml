@@ -10,6 +10,7 @@ jobs:
       fail-fast: true
       matrix:
         version: ["7.1", "7.2", "7.3", "7.4", "8.0", "8.1" ]
+        arch: ["amd64", "arm64/v8", "arm/v7"]
     env:
       VERSION: ${{ matrix.version }}
     name: release-${{ matrix.version }}
