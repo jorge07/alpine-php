@@ -20,19 +20,16 @@ jobs:
     - uses: actions/checkout@v1
     - name: Set up QEMU
       uses: docker/setup-qemu-action@master
-      with:
-        platforms: "386"
     - name: Set up Docker Buildx
-      id: buildx
       uses: docker/setup-buildx-action@master
-      with:
-        install: true
     - name: Build
       run: |
+         sudo apt update && sudo apt install jq
          docker buildx create --name alpine-php
          docker buildx use alpine-php
-         make build
-         docker manifest inspect -v jorge07/alpine-php | grep -A3 platform
+         docker buildx inspect --bootstrap
+         ARCHS="linux/arm64" make build
+         docker manifest inspect -v jorge07/alpine-php:${VERSION} | jq .Descriptor.platform
     - name: Run
       run: |
         make run-detached
