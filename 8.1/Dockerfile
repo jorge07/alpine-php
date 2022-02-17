@@ -2,9 +2,11 @@ FROM alpine:3.15 as main
 
 LABEL maintainer="Jorge Arco <jorge.arcoma@gmail.com>"
 
-RUN apk --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/edge/community add \
+RUN apk --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/edge/main add \
+    icu-libs \
+    &&apk --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/edge/community add \
     # Current packages don't exist in other repositories
-        libavif \
+    libavif \
     && apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ --allow-untrusted gnu-libiconv \
     # Packages
     tini \
