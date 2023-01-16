@@ -24,12 +24,11 @@ jobs:
       uses: docker/setup-buildx-action@master
     - name: Build
       run: |
-         sudo apt update && sudo apt install jq
          docker buildx create --name alpine-php
          docker buildx use alpine-php
          docker buildx inspect --bootstrap
          ARCHS="linux/arm64" make build
-         docker manifest inspect -v jorge07/alpine-php:${VERSION} | jq .Descriptor.platform
+         docker manifest inspect -v jorge07/alpine-php:${VERSION}
     - name: Run
       run: |
         make run-detached
