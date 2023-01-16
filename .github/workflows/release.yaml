@@ -31,6 +31,4 @@ jobs:
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - run: |
-         docker buildx create --name alpine-php
-         docker buildx use alpine-php
          make release

@@ -21,16 +21,16 @@ test-dev:
 	$(DOCKER_RUN_DEV) sh -c "php test/test.php | grep Iyo"
 	$(DOCKER_RUN_DEV) sh -c "echo \"<?php echo ini_get('memory_limit');\" | php | grep 1G"
 
-release: build
+release:
 	echo "Releasing: ${REPO}:${SEMVER}"
 	echo "Releasing: ${REPO}:${SEMVER}-dev"
 	echo "Releasing: ${REPO}:${VERSION}"
 	echo "Releasing: ${REPO}:${VERSION}-dev"
 	$(eval export SEMVER=$(shell docker run --rm -v $(PWD):/app ${REPO}:${VERSION} php -r "echo phpversion();"))
-	docker buildx build --platform $(ARCHS) --push -t $(REPO):${VERSION} --target main -f ${VERSION}/Dockerfile ${VERSION}
-	docker buildx build --platform $(ARCHS) --push -t $(REPO):${VERSION}-dev --target dev -f ${VERSION}/Dockerfile ${VERSION}
-	docker buildx build --platform $(ARCHS) --push -t $(REPO):${SEMVER} --target main -f ${VERSION}/Dockerfile ${VERSION}
-	docker buildx build --platform $(ARCHS) --push -t $(REPO):${SEMVER}-dev --target dev -f ${VERSION}/Dockerfile ${VERSION}
+	docker buildx build --platform $(ARCHS) --push -t $(REPO):${VERSION} --target main -f ${VERSION}/Dockerfile ${VERSION}/
+	docker buildx build --platform $(ARCHS) --push -t $(REPO):${VERSION}-dev --target dev -f ${VERSION}/Dockerfile ${VERSION}/
+	docker buildx build --platform $(ARCHS) --push -t $(REPO):${SEMVER} --target main -f ${VERSION}/Dockerfile ${VERSION}/
+	docker buildx build --platform $(ARCHS) --push -t $(REPO):${SEMVER}-dev --target dev -f ${VERSION}/Dockerfile ${VERSION}/
 
 test-all: test-all
 	VERSION=8.1 make build
