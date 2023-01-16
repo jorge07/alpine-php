@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM alpine:3.15 as main
+FROM --platform=$BUILDPLATFORM alpine:3.17 as main
 
 LABEL maintainer="Jorge Arco <jorge.arcoma@gmail.com>"
 
@@ -34,9 +34,10 @@ RUN apk --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/edge/main 
     php81-dom \
     php81-fpm \
     php81-sodium \
+    php81-tokenizer \
     # Iconv Fix
     php81-pecl-apcu \
-    && ln -s /usr/bin/php81 /usr/bin/php
+    && ln -sf /usr/bin/php81 /usr/bin/php
 
 ADD rootfs /
 
@@ -53,7 +54,7 @@ FROM --platform=$BUILDPLATFORM main as dev
 ARG USER=root
 ARG PASSWORD=root
 
-ARG COMPOSER_VERSION=2.2.1
+ARG COMPOSER_VERSION=2.5.1
 
 RUN apk add -U --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/   \
         php81-pear \
