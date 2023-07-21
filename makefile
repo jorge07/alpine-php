@@ -24,7 +24,7 @@ test-dev:
 	$(DOCKER_RUN_DEV) sh -c "php test/test.php | grep Iyo"
 	$(DOCKER_RUN_DEV) sh -c "echo \"<?php echo ini_get('memory_limit');\" | php | grep 1G"
 
-release:
+release: build
 	echo "Releasing: ${REPO}:${SEMVER}"
 	echo "Releasing: ${REPO}:${SEMVER}-dev"
 	echo "Releasing: ${REPO}:${VERSION}"
