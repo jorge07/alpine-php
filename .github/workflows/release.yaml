@@ -11,9 +11,7 @@ jobs:
       matrix:
         version: [ "8.0", "8.1", "8.2" ]
         arch: [
-          "linux/amd64", 
-          "linux/arm64/v8", 
-          "linux/arm/v7"
+          "linux/amd64,linux/arm64/v8,linux/arm/v7"
         ]
     env:
       VERSION: ${{ matrix.version }}
