@@ -10,7 +10,11 @@ jobs:
       fail-fast: true
       matrix:
         version: [ "8.0", "8.1", "8.2" ]
-        arch: ["amd64", "arm64/v8", "arm/v7"]
+        arch: [
+          "linux/amd64", 
+          "linux/arm64/v8", 
+          "linux/arm/v7"
+        ]
     env:
       VERSION: ${{ matrix.version }}
       ARCHS: linux/${{ matrix.arch }}
