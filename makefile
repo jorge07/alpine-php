@@ -1,7 +1,7 @@
 REPO:=jorge07/alpine-php
 DOCKER_RUN:=docker run --rm -v $(PWD):/app ${REPO}:${VERSION}
 DOCKER_RUN_DEV:=$(DOCKER_RUN)-dev
-ARCHS:=linux/amd64
+ARCHS?=linux/amd64
 
 build:
 	docker buildx build --load --platform $(ARCHS) -t $(REPO):${VERSION} --target main -f ${VERSION}/Dockerfile ${VERSION}/
