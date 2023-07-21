@@ -9,10 +9,11 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        version: [ "7.4", "8.0", "8.1" ]
+        version: [ "8.0", "8.1", "8.2" ]
         arch: ["amd64", "arm64/v8", "arm/v7"]
     env:
       VERSION: ${{ matrix.version }}
+      ARCHS: linux/${{ matrix.arch }}
     name: release-${{ matrix.version }}
     runs-on: ubuntu-latest
     steps:
