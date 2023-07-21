@@ -4,8 +4,8 @@ DOCKER_RUN_DEV:=$(DOCKER_RUN)-dev
 ARCHS?=linux/amd64
 
 build:
-	docker buildx build --load --platform $(ARCHS) -t $(REPO):${VERSION} --target main -f ${VERSION}/Dockerfile ${VERSION}/
-	docker buildx build --load --platform $(ARCHS) -t $(REPO):${VERSION}-dev --target dev -f ${VERSION}/Dockerfile ${VERSION}/
+	docker buildx build --load --platform linux/amd64 -t $(REPO):${VERSION} --target main -f ${VERSION}/Dockerfile ${VERSION}/
+	docker buildx build --load --platform linux/amd64 -t $(REPO):${VERSION}-dev --target dev -f ${VERSION}/Dockerfile ${VERSION}/
 
 run-detached:
 	docker run --name php${VERSION} -d -v $(PWD):/app $(REPO):${VERSION}
