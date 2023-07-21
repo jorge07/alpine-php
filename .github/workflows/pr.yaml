@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: ["7.4", "8.0", "8.1" ]
+        version: [ "8.0", "8.1", "8.2" ]
 
     name: ${{ matrix.version }}
     runs-on: ubuntu-latest
@@ -22,13 +22,16 @@ jobs:
       uses: docker/setup-qemu-action@master
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@master
+    - uses: azure/docker-login@v1
+      with:
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
     - name: Build
       run: |
          docker buildx create --name alpine-php
          docker buildx use alpine-php
          docker buildx inspect --bootstrap
          ARCHS="linux/arm64" make build
-         docker manifest inspect -v jorge07/alpine-php:${VERSION}
     - name: Run
       run: |
         make run-detached
