@@ -7,7 +7,9 @@ Repository of https://hub.docker.com/r/jorge07/alpine-php
 
 [![PR checks](https://github.com/jorge07/alpine-php/actions/workflows/pr.yaml/badge.svg?branch=master)](https://github.com/jorge07/alpine-php/actions/workflows/pr.yaml) ![Docker Pulls](https://img.shields.io/docker/pulls/jorge07/alpine-php.svg?style=flat-square)
 
-Minimal PHP Docker images based on Alpine. Contains **tags** for development environments and adapted for various frameworks like [Symfony](http://symfony.com/) and [Wordpress](https://github.com/WordPress/WordPress).
+Small PHP Docker images based on Alpine [<40MB].
+
+Up to date with [active releases](https://www.php.net/supported-versions.php) and a place for older unmaintained images.
 
 ## Documentation
 
@@ -18,10 +20,10 @@ Minimal PHP Docker images based on Alpine. Contains **tags** for development env
 - [8.3](https://github.com/jorge07/alpine-php/blob/master/8.3/Dockerfile)
 - [8.2](https://github.com/jorge07/alpine-php/blob/master/8.2/Dockerfile)
 - [8.1](https://github.com/jorge07/alpine-php/blob/master/8.1/Dockerfile)
-- [8.0](https://github.com/jorge07/alpine-php/blob/master/8.0/Dockerfile)
 
 # Deprecated but available images
 
+- [8.0](https://github.com/jorge07/alpine-php/blob/master/8.0/Dockerfile)
 - [7.4](https://github.com/jorge07/alpine-php/blob/master/7.4/Dockerfile)
 - [7.3](https://github.com/jorge07/alpine-php/blob/master/7.3/Dockerfile)
 - [7.2](https://github.com/jorge07/alpine-php/blob/master/7.2/Dockerfile)
