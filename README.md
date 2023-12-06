@@ -15,6 +15,7 @@ Minimal PHP Docker images based on Alpine. Contains **tags** for development env
 
 ## Images
 
+- [8.3](https://github.com/jorge07/alpine-php/blob/master/8.3/Dockerfile)
 - [8.2](https://github.com/jorge07/alpine-php/blob/master/8.2/Dockerfile)
 - [8.1](https://github.com/jorge07/alpine-php/blob/master/8.1/Dockerfile)
 - [8.0](https://github.com/jorge07/alpine-php/blob/master/8.0/Dockerfile)
@@ -30,7 +31,7 @@ Minimal PHP Docker images based on Alpine. Contains **tags** for development env
 ## Usage:
 
 ```sh
-docker run -d --name dev -p 2323:22 -v $PWD:/app jorge07/alpine-php:8.2-dev
+docker run -d --name dev -p 2323:22 -v $PWD:/app jorge07/alpine-php:8.3-dev
 ```
 
 > To make xdebug config easier for all environments there's a custom ENVVAR you can define: `XDEBUG_CLIENT_HOST`. 
