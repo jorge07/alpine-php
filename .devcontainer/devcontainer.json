@@ -1,0 +1,40 @@
+{
+    "name": "alpine-php dev",
+
+    // Use the latest stable dev image. Change to 8.1-dev, 8.2-dev, or 8.4-dev as needed.
+    "image": "jorge07/alpine-php:8.3-dev",
+
+    // Mount the workspace at /app (matches the container's WORKDIR)
+    "workspaceFolder": "/app",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/app,type=bind,consistency=cached",
+
+    // Forward Xdebug port and SSH port
+    "forwardPorts": [9003, 22],
+    "portsAttributes": {
+        "9003": { "label": "Xdebug", "onAutoForward": "silent" },
+        "22":   { "label": "SSH (IDE integration)", "onAutoForward": "silent" }
+    },
+
+    // VS Code extensions for PHP development
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "xdebug.php-debug",
+                "bmewburn.vscode-intelephense-client",
+                "junstyle.php-cs-fixer",
+                "neilbrayfield.php-docblocker"
+            ],
+            "settings": {
+                "php.validate.executablePath": "/usr/bin/php",
+                "intelephense.environment.phpVersion": "8.3",
+                "php.debug.ideKey": "VSCODE"
+            }
+        }
+    },
+
+    // Remote user — root matches the dev image's default
+    "remoteUser": "root",
+
+    // Override CMD to keep the container running with supervisor
+    "overrideCommand": false
+}

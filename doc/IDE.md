@@ -1,64 +1,130 @@
-# IDE integration
+# IDE Integration
 
-### Up container
+## Start the dev container
 
-Run this in your project root path: 
-    
-    docker run -itd --name php7 -v $PWD:/app -p 2244:22 jorge07/alpine-php:7.4-dev
+Run this in your project root:
 
-- `-v $PWD:/app` will create a volume to share the host folder with the container
-- `-p 2244:22` will export the 22 container port to the 2244 host machine. This will allow us to connect the IDE via SSH.
+```sh
+docker run -itd --name php-dev \
+  -v $PWD:/app \
+  -p 2244:22 \
+  -p 9003:9003 \
+  jorge07/alpine-php:8.3-dev
+```
 
-### PHPSTORM
+- `-v $PWD:/app` — mounts your project at `/app` inside the container
+- `-p 2244:22` — SSH port for remote interpreter
+- `-p 9003:9003` — Xdebug 3 port (default, replaces 9000 from Xdebug 2)
 
-- Languages & Frameworks > PHP > Add > Remote...
-    - SSH Credentials
-        - HOST
-            - Docker-machine: 192.168.99.100 ([Recommended](https://github.com/adlogix/docker-machine-nfs))
-            - Linux or Docker4{MAc|Windows}: localhost
-        - port: 2244 (or the one you choose on the docker run command)
-        - user: root
-        - pass: root 
-        - Executable: /usr/bin/php
-    - Path mappings:
-        - <Project root> -> /app
-      
-**Remote Interpreter**
-![Remote](https://raw.githubusercontent.com/jorge07/alpine-php/master/doc/images/remote-interpreter.png)
+**Default credentials:** `root` / `root`
 
-**Mapping**
-![Remote](https://raw.githubusercontent.com/jorge07/alpine-php/master/doc/images/mapping.png)
+---
 
-Now your breakpoints should work.
+## VS Code (Dev Containers)
 
-You can also use the oficial PHPStrom documentation for [remote connexion via SSH Credentials](https://confluence.jetbrains.com/display/PhpStorm/Working+with+Remote+PHP+Interpreters+in+PhpStorm) they will explain it better than me.
+The repo ships a `.devcontainer/devcontainer.json`. Open the project in VS Code and click **Reopen in Container** — it will use `jorge07/alpine-php:8.3-dev` and pre-install the PHP Debug and Intelephense extensions.
 
-### Steps in detail
+### Xdebug launch config
 
-**Credentials**
+Add to `.vscode/launch.json`:
 
-Use the ARG variables to change the *USER* and *PASSWORD* for ssh and *COMPOSER_VERSION* to select an specific version on the build. 
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Listen for Xdebug",
+            "type": "php",
+            "request": "launch",
+            "port": 9003,
+            "pathMappings": {
+                "/app": "${workspaceFolder}"
+            }
+        },
+        {
+            "name": "Debug CLI script",
+            "type": "php",
+            "request": "launch",
+            "port": 9003,
+            "pathMappings": {
+                "/app": "${workspaceFolder}"
+            },
+            "runtimeExecutable": "php",
+            "program": "${file}"
+        }
+    ]
+}
+```
 
-**Default Credentials Values:**
+Set the `XDEBUG_SESSION` env var or use the browser extension to trigger a debug session. For CLI scripts:
 
-- user: root 
-- pass: root
+```sh
+docker exec php-dev sh -c "XDEBUG_SESSION=1 php /app/bin/console something"
+```
 
-**Binary path**
+---
 
-- /usr/bin/php
+## PHPStorm
 
-**Xdebug.so path**
+### Remote interpreter via SSH
 
-- /usr/lib/php{7}/modules/xdebug.so
+**Languages & Frameworks → PHP → Add → SSH Credentials**
 
-**Server mappings**
+| Field | Value |
+|---|---|
+| Host | `localhost` (or your Docker host IP) |
+| Port | `2244` |
+| User | `root` |
+| Password | `root` |
+| PHP executable | `/usr/bin/php` |
 
-Add your **Path mapping** from your workspace folder to the `/app` folder inside the container.
+**Path mappings:** `<project root>` → `/app`
 
-**Xdebug**
+### Xdebug 3 configuration
 
-If you want to [debug php script commands remotely](https://confluence.jetbrains.com/display/PhpStorm/Debugging+PHP+CLI+scripts+with+PhpStorm) (I.E: php bin/console something) with Your IDE (PHPStorm in this case):
- 
- - Set the PHP_IDE_CONFIG environment variable with **serverName=SomeName**
- - where **SomeName** is the name of the server configured in *Settings / Preferences | Languages & Frameworks | PHP | Servers* in the PHPStorm IDE.
+**Languages & Frameworks → PHP → Debug**
+
+| Setting | Value |
+|---|---|
+| Debug port | `9003` |
+| Can accept external connections | ✅ |
+
+**Run → Edit Configurations → PHP Remote Debug**
+
+| Setting | Value |
+|---|---|
+| Server | (the SSH server you configured above) |
+| IDE key | `PHPSTORM` |
+
+For CLI debugging, set the env var before running:
+
+```sh
+docker exec php-dev sh -c "PHP_IDE_CONFIG='serverName=MyServer' XDEBUG_SESSION=PHPSTORM php /app/script.php"
+```
+
+### Key differences from Xdebug 2
+
+| | Xdebug 2 | Xdebug 3 |
+|---|---|---|
+| Default port | `9000` | `9003` |
+| Trigger env var | `XDEBUG_REMOTE_ENABLE=1` | `XDEBUG_SESSION=1` |
+| ini key (enable) | `xdebug.remote_enable=1` | `xdebug.mode=debug` |
+| ini key (host) | `xdebug.remote_host` | `xdebug.client_host` |
+| ini key (port) | `xdebug.remote_port` | `xdebug.client_port` |
+
+The images ship with `xdebug.mode=debug` and `xdebug.start_with_request=trigger` — Xdebug only activates when a session is triggered, not on every request.
+
+---
+
+## SSH credentials (custom)
+
+Pass build args to change the default user/password:
+
+```sh
+docker build \
+  --build-arg USER=myuser \
+  --build-arg PASSWORD=mypassword \
+  -t myapp:dev \
+  --target dev \
+  -f 8.3/Dockerfile 8.3/
+```

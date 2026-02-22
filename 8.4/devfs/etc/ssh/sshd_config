@@ -1,0 +1,27 @@
+# OpenSSH configuration for alpine-php dev image
+# Intended for local development only — do not use in production.
+
+Port 22
+AddressFamily inet
+Protocol 2
+
+# Authentication
+PermitRootLogin yes
+PasswordAuthentication yes
+PubkeyAuthentication yes
+AuthorizedKeysFile .ssh/authorized_keys
+PermitEmptyPasswords no
+IgnoreRhosts yes
+HostbasedAuthentication no
+
+# Keep connections alive (important for IDE SSH sessions)
+TCPKeepAlive yes
+ClientAliveInterval 60
+ClientAliveCountMax 3
+
+# Forwarding (required for IDE remote debugging port forwarding)
+AllowTcpForwarding yes
+GatewayPorts yes
+
+# SFTP
+Subsystem sftp /usr/lib/ssh/sftp-server

@@ -83,7 +83,6 @@ RUN apk add -U --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/v3.
         make \
         zip \
     && rm -rf /var/cache/apk/* \
-    && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config \
     && echo "${USER}:${PASSWORD}" | chpasswd \
     && ssh-keygen -A \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer --version=${COMPOSER_VERSION}
