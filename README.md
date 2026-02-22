@@ -1,49 +1,150 @@
-# Alpine PHP 
+# Alpine PHP
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-Repository of https://hub.docker.com/r/jorge07/alpine-php
+[![PR checks](https://github.com/jorge07/alpine-php/actions/workflows/pr.yaml/badge.svg?branch=master)](https://github.com/jorge07/alpine-php/actions/workflows/pr.yaml)
+![Docker Pulls](https://img.shields.io/docker/pulls/jorge07/alpine-php.svg?style=flat-square)
+[![Docker Hub](https://img.shields.io/badge/Docker%20Hub-jorge07%2Falpine--php-blue)](https://hub.docker.com/r/jorge07/alpine-php)
+[![GHCR](https://img.shields.io/badge/GHCR-ghcr.io%2Fjorge07%2Falpine--php-blue)](https://ghcr.io/jorge07/alpine-php)
 
-[![PR checks](https://github.com/jorge07/alpine-php/actions/workflows/pr.yaml/badge.svg?branch=master)](https://github.com/jorge07/alpine-php/actions/workflows/pr.yaml) ![Docker Pulls](https://img.shields.io/docker/pulls/jorge07/alpine-php.svg?style=flat-square)
+Lightweight PHP-FPM Docker images based on Alpine Linux — under 40MB.
 
-Small PHP Docker images based on Alpine [<40MB].
+Kept up to date with [active PHP releases](https://www.php.net/supported-versions.php). Weekly automated rebuilds pick up Alpine security patches.
 
-Up to date with [active releases](https://www.php.net/supported-versions.php) and a place for older unmaintained images.
-
-## Documentation
-
-[Read about Documentation and see some examples here](https://github.com/jorge07/alpine-php/tree/master/doc/README.md)
+---
 
 ## Images
 
-- [8.3](https://github.com/jorge07/alpine-php/blob/master/8.3/Dockerfile)
-- [8.2](https://github.com/jorge07/alpine-php/blob/master/8.2/Dockerfile)
-- [8.1](https://github.com/jorge07/alpine-php/blob/master/8.1/Dockerfile)
+| Tag | PHP | Alpine | Arch |
+|---|---|---|---|
+| `8.4` / `8.4-dev` | 8.4.x | edge | amd64, arm64, arm/v7, arm/v8 |
+| `8.3` / `8.3-dev` | 8.3.x | 3.20 | amd64, arm64, arm/v7, arm/v8 |
+| `8.2` / `8.2-dev` | 8.2.x | 3.21 | amd64, arm64, arm/v7, arm/v8 |
+| `8.1` / `8.1-dev` | 8.1.x | 3.19 | amd64, arm64, arm/v7, arm/v8 |
 
-# Deprecated but available images
+Available on [Docker Hub](https://hub.docker.com/r/jorge07/alpine-php) and [GHCR](https://ghcr.io/jorge07/alpine-php).
 
-- [8.0](https://github.com/jorge07/alpine-php/blob/master/8.0/Dockerfile)
-- [7.4](https://github.com/jorge07/alpine-php/blob/master/7.4/Dockerfile)
-- [7.3](https://github.com/jorge07/alpine-php/blob/master/7.3/Dockerfile)
-- [7.2](https://github.com/jorge07/alpine-php/blob/master/7.2/Dockerfile)
-- [7.1](https://github.com/jorge07/alpine-php/blob/master/7.1/Dockerfile)
-- [5.6](https://github.com/jorge07/alpine-php/blob/master/5.6/Dockerfile)
+### Deprecated (available but unmaintained)
 
-## Usage:
+`8.0` · `7.4` · `7.3` · `7.2` · `7.1` · `5.6`
+
+---
+
+## Quick start
 
 ```sh
-docker run -d --name dev -p 2323:22 -v $PWD:/app jorge07/alpine-php:8.3-dev
+# Production image — PHP-FPM on port 9000
+docker run -d --name php -p 9000:9000 -v $PWD:/app jorge07/alpine-php:8.3
+
+# Dev image — PHP-FPM + Xdebug + Composer + SSH
+docker run -d --name php-dev \
+  -p 2244:22 \
+  -p 9003:9003 \
+  -v $PWD:/app \
+  jorge07/alpine-php:8.3-dev
 ```
 
-> To make xdebug config easier for all environments there's a custom ENVVAR you can define: `XDEBUG_CLIENT_HOST`. 
-> Example: XDEBUG_CLIENT_HOST=docker.for.mac for OSX, XDEBUG_CLIENT_HOST=docker.for.windows for Windows users and Linux users and Remote interpreters by SSH can leave it empty.
+---
 
-> SSH is only for IDE integration to use container as remote interpreter 
+## Dev Container (VS Code)
 
-## Dev Dockerfiles
+The repo ships a `.devcontainer/devcontainer.json` for use with [VS Code Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers) or [GitHub Codespaces](https://github.com/features/codespaces).
 
-Dev images extend the standard ones and add some tools for development and CI like, composer, xdebug, etc...
+### Get started in 3 steps
+
+1. Install the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) in VS Code
+2. Open your project folder
+3. Click **Reopen in Container** (or run `Dev Containers: Reopen in Container` from the command palette)
+
+VS Code will pull `jorge07/alpine-php:8.3-dev`, mount your project at `/app`, and pre-install:
+- [PHP Debug](https://marketplace.visualstudio.com/items?itemName=xdebug.php-debug) (Xdebug 3 integration)
+- [Intelephense](https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client) (PHP language server)
+
+### Xdebug launch config
+
+Add `.vscode/launch.json` to your project:
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Listen for Xdebug",
+            "type": "php",
+            "request": "launch",
+            "port": 9003,
+            "pathMappings": {
+                "/app": "${workspaceFolder}"
+            }
+        }
+    ]
+}
+```
+
+Set breakpoints, press **F5**, and trigger a request. For CLI scripts:
+
+```sh
+docker exec php-dev sh -c "XDEBUG_SESSION=1 php /app/script.php"
+```
+
+---
+
+## Dev images — manual setup
+
+Dev images add Xdebug, Composer, SSH, and Supervisor on top of the production image.
+
+### PHPStorm (SSH remote interpreter)
+
+```sh
+docker run -d --name php-dev -p 2244:22 -p 9003:9003 -v $PWD:/app jorge07/alpine-php:8.3-dev
+```
+
+**Languages & Frameworks → PHP → Add → SSH Credentials**
+
+| Field | Value |
+|---|---|
+| Host | `localhost` |
+| Port | `2244` |
+| User | `root` |
+| Password | `root` |
+| PHP executable | `/usr/bin/php` |
+
+**Path mappings:** `<project root>` → `/app`
+
+**Debug → Xdebug port:** `9003`
+
+### Custom SSH credentials
+
+```sh
+docker build \
+  --build-arg USER=myuser \
+  --build-arg PASSWORD=mypass \
+  --target dev -t myapp:dev \
+  -f 8.3/Dockerfile 8.3/
+```
+
+### Xdebug 3 — key settings
+
+| Setting | Value |
+|---|---|
+| Port | `9003` (changed from 9000 in Xdebug 2) |
+| Trigger | `XDEBUG_SESSION=1` env var |
+| Mode | `debug` (set in image, trigger-based) |
+
+> **Migrating from Xdebug 2?** See the [IDE integration guide](doc/IDE.md) for a full comparison table and PHPStorm setup walkthrough.
+
+---
+
+## PHP Extensions
+
+All images include:
+
+`bcmath` · `ctype` · `curl` · `dom` · `exif` · `fileinfo` · `gd` · `iconv` · `intl` · `mbstring` · `opcache` · `openssl` · `pcntl` · `pdo` · `pdo_mysql` · `pdo_pgsql` · `phar` · `session` · `simplexml` · `sodium` · `tokenizer` · `xml` · `xmlreader` · `xsl` · `zip` · `zlib` · `apcu`
+
+Dev images additionally include: `xdebug` · `pear`
+
+---
 
 ## Contributors ✨
 
