@@ -23,6 +23,9 @@ jobs:
       REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
     name: release-${{ matrix.version }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
     - uses: actions/checkout@v6
     - name: Set up QEMU
@@ -38,9 +41,23 @@ jobs:
       with:
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
-    - name: Build and push
+    - name: Login to GHCR
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Build and push (Docker Hub)
       if: env.REGISTRY_USERNAME != ''
       run: make release
     - name: Build only (no push credentials)
       if: env.REGISTRY_USERNAME == ''
       run: make build
+    - name: Push to GHCR
+      if: env.REGISTRY_USERNAME != ''
+      run: |
+        SEMVER=$(docker run --rm -v $(pwd):/app jorge07/alpine-php:${VERSION} php -r "echo phpversion();")
+        docker buildx imagetools create --tag ghcr.io/jorge07/alpine-php:${VERSION}       jorge07/alpine-php:${VERSION}
+        docker buildx imagetools create --tag ghcr.io/jorge07/alpine-php:${VERSION}-dev   jorge07/alpine-php:${VERSION}-dev
+        docker buildx imagetools create --tag ghcr.io/jorge07/alpine-php:${SEMVER}        jorge07/alpine-php:${SEMVER}
+        docker buildx imagetools create --tag ghcr.io/jorge07/alpine-php:${SEMVER}-dev    jorge07/alpine-php:${SEMVER}-dev

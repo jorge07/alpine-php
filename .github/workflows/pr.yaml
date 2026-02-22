@@ -31,6 +31,15 @@ jobs:
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - name: Build
       run: ARCHS="linux/amd64" make build
+    - name: Trivy vulnerability scan (main image)
+      uses: aquasecurity/trivy-action@0.29.0
+      with:
+        image-ref: jorge07/alpine-php:${{ matrix.version }}
+        format: table
+        exit-code: "1"
+        ignore-unfixed: true
+        vuln-type: os,library
+        severity: CRITICAL
     - name: Test Main
       run: make test-main
     - name: Test Dev
