@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM alpine:3.20 AS main
+FROM --platform=$BUILDPLATFORM alpine:edge AS main
 
 ARG BUILD_DATE
 ARG VCS_REF
@@ -12,9 +12,9 @@ LABEL org.opencontainers.image.authors="Jorge Arco <jorge.arcoma@gmail.com>" \
       org.opencontainers.image.created="${BUILD_DATE}" \
       org.opencontainers.image.revision="${VCS_REF}"
 
-RUN apk --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/v3.20/main add \
+RUN apk --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/edge/main add \
     icu-libs \
-    && apk --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/v3.20/community add \
+    && apk --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/edge/community add \
     libavif \
     gnu-libiconv \
     tini \
@@ -71,7 +71,7 @@ ARG PASSWORD=root
 
 ARG COMPOSER_VERSION=2.9.5
 
-RUN apk add -U --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/v3.20/community/ \
+RUN apk add -U --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/edge/community/ \
         php83-pear \
         php83-xdebug \
         openssh \

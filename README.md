@@ -19,8 +19,8 @@ Kept up to date with [active PHP releases](https://www.php.net/supported-version
 | Tag | PHP | Alpine | Arch |
 |---|---|---|---|
 | `8.4` / `8.4-dev` | 8.4.x | edge | amd64, arm64, arm/v7, arm/v8 |
-| `8.3` / `8.3-dev` | 8.3.x | 3.20 | amd64, arm64, arm/v7, arm/v8 |
-| `8.2` / `8.2-dev` | 8.2.x | 3.21 | amd64, arm64, arm/v7, arm/v8 |
+| `8.3` / `8.3-dev` | 8.3.x | edge | amd64, arm64, arm/v7, arm/v8 |
+| `8.2` / `8.2-dev` | 8.2.x | edge | amd64, arm64, arm/v7, arm/v8 |
 | `8.1` / `8.1-dev` | 8.1.x | 3.19 | amd64, arm64, arm/v7, arm/v8 |
 
 Available on [Docker Hub](https://hub.docker.com/r/jorge07/alpine-php) and [GHCR](https://ghcr.io/jorge07/alpine-php).

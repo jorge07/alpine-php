@@ -20,6 +20,7 @@ test-main:
 	$(DOCKER_RUN) sh -c "php -v | grep OPcache"
 	$(DOCKER_RUN) sh -c "php test/test.php | grep Iyo"
 	$(DOCKER_RUN) sh -c "echo \"<?php echo ini_get('memory_limit');\" | php | grep 256M"
+	$(DOCKER_RUN) php -r '$$latest = json_decode(file_get_contents("https://www.php.net/releases/index.php?json&version=${VERSION}"))->version; echo PHP_VERSION, " >= ", $$latest, PHP_EOL; exit(version_compare(PHP_VERSION, $$latest, ">=") ? 0 : 1);'
 
 test-dev:
 	$(DOCKER_RUN_DEV) sh -c "php -v | grep Xdebug"
