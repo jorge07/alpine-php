@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM alpine:3.21 AS main
+FROM --platform=$BUILDPLATFORM alpine:edge AS main
 
 ARG BUILD_DATE
 ARG VCS_REF
@@ -12,13 +12,11 @@ LABEL org.opencontainers.image.authors="Jorge Arco <jorge.arcoma@gmail.com>" \
       org.opencontainers.image.created="${BUILD_DATE}" \
       org.opencontainers.image.revision="${VCS_REF}"
 
-RUN apk --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/v3.21/main add \
+RUN apk --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/edge/main add \
     icu-libs \
-    && apk --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/v3.21/community add \
-    # Current packages don't exist in other repositories
+    && apk --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/edge/community --repository https://dl-cdn.alpinelinux.org/alpine/edge/testing add \
     libavif \
     gnu-libiconv \
-    # Packages
     tini \
     php82 \
     php82-dev \
@@ -50,7 +48,6 @@ RUN apk --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/v3.21/main
     php82-pdo_mysql \
     php82-pdo_pgsql \
     php82-simplexml \
-    # Iconv Fix
     php82-pecl-apcu \
     && ln -sf /usr/bin/php82 /usr/bin/php
 
@@ -74,7 +71,7 @@ ARG PASSWORD=root
 
 ARG COMPOSER_VERSION=2.9.5
 
-RUN apk add -U --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/v3.21/community/ \
+RUN apk add -U --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/edge/testing/ \
         php82-pear \
         openssh \
         supervisor \
@@ -85,12 +82,9 @@ RUN apk add -U --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/v3.
         make \
         zip \
         php82-xdebug \
-    # Delete APK cache.
     && rm -rf /var/cache/apk/* \
-    # Create ssh user for dev.
     && echo "${USER}:${PASSWORD}" | chpasswd \
     && ssh-keygen -A \
-    # Download composer.
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer --version=${COMPOSER_VERSION}
 
 ADD devfs /

@@ -1,5 +1,3 @@
-# PHP 8.4 — uses alpine:edge until php84 lands in a stable Alpine release.
-# TODO: pin to alpine:3.22 (or next stable) once available.
 FROM --platform=$BUILDPLATFORM alpine:edge AS main
 
 ARG BUILD_DATE
