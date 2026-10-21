@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
   schedule:
     # Weekly builds to pick up Alpine security patches
     - cron: '0 4 * * 1'
