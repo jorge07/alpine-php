@@ -27,6 +27,8 @@ test-dev:
 	$(DOCKER_RUN_DEV) composer --version
 	$(DOCKER_RUN_DEV) sh -c "php test/test.php | grep Iyo"
 	$(DOCKER_RUN_DEV) sh -c "echo \"<?php echo ini_get('memory_limit');\" | php | grep 1G"
+	$(DOCKER_RUN_DEV) sh -c "apk version -t \$$(apk info -e -v openssh-server | sed 's/^openssh-server-//') 10.6_p2-r0 | grep -qv '<'"
+	$(DOCKER_RUN_DEV) /usr/sbin/sshd -t
 
 release: build test-main
 	echo "Releasing: ${REPO}:${SEMVER}"
