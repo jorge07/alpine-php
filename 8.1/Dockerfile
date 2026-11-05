@@ -71,10 +71,10 @@ ARG PASSWORD=root
 
 ARG COMPOSER_VERSION=2.9.5
 
+# Alpine 3.19 is EOL and has no openssh 10.6p2 (musl password bypass fix); edge/main installs on 3.19 libs.
 RUN apk add -U --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/v3.19/community/ \
         php81-pear \
         php81-xdebug \
-        openssh \
         supervisor \
         autoconf \
         git \
@@ -82,6 +82,7 @@ RUN apk add -U --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/v3.
         wget \
         make \
         zip \
+    && apk add --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/edge/main "openssh>=10.6_p2" \
     && rm -rf /var/cache/apk/* \
     && echo "${USER}:${PASSWORD}" | chpasswd \
     && ssh-keygen -A \
